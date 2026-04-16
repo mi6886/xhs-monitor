@@ -13,7 +13,7 @@ jobs:
       - name: Trigger crawl
         run: |
           response=$(curl -s -w "\n%{http_code}" -X POST \
-            "${{ secrets.RENDER_URL }}/api/crawl" \
+            "${{ secrets.RENDER_URL }}/api/crawl?async=1" \
             -H "Authorization: Bearer ${{ secrets.CRAWL_SECRET }}" \
             -H "Content-Type: application/json")
 
