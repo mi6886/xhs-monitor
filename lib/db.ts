@@ -109,7 +109,9 @@ export interface Rule {
 }
 
 export function clearRules(): void {
-  getDb().prepare("DELETE FROM rules").run();
+  const db = getDb();
+  db.prepare("DELETE FROM candidates").run();
+  db.prepare("DELETE FROM rules").run();
 }
 
 export function getEnabledRules(): Rule[] {
