@@ -3,11 +3,11 @@ import type { DataSource, NoteItem, SearchOptions, UserNotesOptions } from "./ty
 const BASE_URL = "https://api.yddm.com";
 
 const ENDPOINTS = {
-  searchNotes: "/xhs/search_note_web",
-  searchNotesFallback: "/xhs/search_note_app",
-  userNotes: "/xhs/user_post3",        // v9 — only working user posts endpoint
-  userNotesFallback: "/xhs/user_post2", // v58 fallback
-  noteDetail: "/xhs/note_detail2",      // vx56
+  searchNotes: "/xhs/search_note_app",     // App v58 — supports sort (time_descending)
+  searchNotesFallback: "/xhs/search_note_web", // Web v8 — no sort but richer fields
+  userNotes: "/xhs/user_post3",            // App v9 — only working user posts endpoint
+  userNotesFallback: "/xhs/user_post2",    // App v58 fallback
+  noteDetail: "/xhs/note_detail2",         // vx56
   noteDetailFallback: "/xhs/note_detail5", // vx — same format as detail2
 };
 
@@ -50,6 +50,35 @@ interface JZLSearchItem {
     avatar: string;
     fansNum: number;
   };
+}
+
+// --- Response types for search_note_app endpoint (items[].note structure) ---
+
+interface JZLAppSearchResponse {
+  code: number;
+  msg: string;
+  data: {
+    cost?: number;
+    balance?: number;
+    items?: Array<{ note: JZLAppNote; model_type?: string }>;
+    [key: string]: unknown;
+  };
+}
+
+interface JZLAppNote {
+  id?: string;
+  note_id?: string;
+  title?: string;
+  display_title?: string;
+  desc?: string;
+  type?: string;
+  timestamp?: number;
+  liked_count?: number;
+  liked?: boolean;
+  collected?: boolean;
+  user?: { userid?: string; nickname?: string; images?: string };
+  cover?: { url?: string; height?: number; width?: number };
+  [key: string]: unknown;
 }
 
 // --- Response types for detail endpoint (note_list structure) ---
@@ -196,6 +225,31 @@ function mapSearchItem(item: JZLSearchItem): NoteItem {
   };
 }
 
+function mapAppSearchNote(raw: JZLAppNote): NoteItem {
+  const noteId = raw.id || raw.note_id || "";
+  const user = raw.user || {};
+  const publishedAt = raw.timestamp
+    ? new Date(raw.timestamp > 1e12 ? raw.timestamp : raw.timestamp * 1000).toISOString()
+    : new Date().toISOString();
+
+  return {
+    noteId,
+    title: raw.display_title || raw.title || "",
+    content: raw.desc || "",
+    author: user.nickname || "",
+    authorId: user.userid || "",
+    coverImage: raw.cover?.url || "",
+    url: `https://www.xiaohongshu.com/explore/${noteId}`,
+    noteType: raw.type === "video" ? "video" : "normal",
+    topics: [],
+    publishedAt,
+    likes: raw.liked_count || 0,
+    comments: 0, // App search doesn't return comment count
+    collected: 0, // App search doesn't return collected count
+    shared: 0, // App search doesn't return share count
+  };
+}
+
 function mapDetailNote(raw: JZLDetailNote): NoteItem {
   const noteId = raw.id || raw.note_id || "";
   const user = raw.user || {};
@@ -257,25 +311,39 @@ export class JZLAdapter implements DataSource {
   readonly name = "jzl";
 
   async searchNotes(keyword: string, options?: SearchOptions): Promise<NoteItem[]> {
+    // Map sort options to JZL API values
+    const sortMap: Record<string, string> = {
+      latest: "time_descending",
+      hottest: "popularity_descending",
+      general: "general",
+    };
     const body: Record<string, unknown> = {
       keyword,
       page: 1,
-      sort: options?.sort || "general",
+      sort: sortMap[options?.sort || "latest"] || "time_descending",
     };
     if (options?.noteType && options.noteType !== "all") {
       body.note_type = options.noteType;
     }
 
-    const res = await jzlFetch<JZLSearchResponse>(
-      ENDPOINTS.searchNotes,
-      body,
-      ENDPOINTS.searchNotesFallback
-    );
-
-    const items = res.data.data || [];
-    return items
-      .filter((item) => item.noteInfo && item.noteInfo.isAdNote !== 1)
-      .map(mapSearchItem);
+    try {
+      // Primary: search_note_app (supports sorting)
+      const res = await jzlFetch<JZLAppSearchResponse>(ENDPOINTS.searchNotes, body);
+      const items = res.data.items || [];
+      return items
+        .filter((item) => item.note)
+        .map((item) => mapAppSearchNote(item.note));
+    } catch {
+      // Fallback: search_note_web (no sort, but richer data)
+      const res = await jzlFetch<JZLSearchResponse>(ENDPOINTS.searchNotesFallback, {
+        keyword,
+        page: 1,
+      });
+      const items = res.data.data || [];
+      return items
+        .filter((item) => item.noteInfo && item.noteInfo.isAdNote !== 1)
+        .map(mapSearchItem);
+    }
   }
 
   async getUserNotes(userId: string, _options?: UserNotesOptions): Promise<NoteItem[]> {
