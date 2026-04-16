@@ -5,9 +5,10 @@ const BASE_URL = "https://api.yddm.com";
 const ENDPOINTS = {
   searchNotes: "/xhs/search_note_web",
   searchNotesFallback: "/xhs/search_note_app",
-  userNotes: "/xhs/user_post",
-  noteDetail: "/xhs/note_detail2",
-  noteDetailFallback: "/xhs/note_detail4",
+  userNotes: "/xhs/user_post3",        // v9 — only working user posts endpoint
+  userNotesFallback: "/xhs/user_post2", // v58 fallback
+  noteDetail: "/xhs/note_detail2",      // vx56
+  noteDetailFallback: "/xhs/note_detail5", // vx — same format as detail2
 };
 
 const RETRY_DELAYS_MS = [5_000, 15_000, 30_000];
@@ -79,6 +80,37 @@ interface JZLDetailNote {
   hash_tag?: Array<{ name: string }>;
   images_list?: Array<{ url?: string; original?: string }>;
   user?: { nickname?: string; userid?: string; name?: string; id?: string };
+}
+
+// --- Response types for user_post3 endpoint (notes[] structure) ---
+
+interface JZLUserPostResponse {
+  code: number;
+  msg: string;
+  data: {
+    cost?: number;
+    balance?: number;
+    notes?: JZLUserPostNote[];
+    pagination?: { has_more: boolean };
+    [key: string]: unknown;
+  };
+}
+
+interface JZLUserPostNote {
+  note_id?: string;
+  id?: string;
+  display_title?: string;
+  title?: string;
+  desc?: string;
+  type?: string;
+  create_time?: number;
+  likes?: number;
+  liked_count?: number;
+  comments_count?: number;
+  collected_count?: number;
+  shared_count?: number;
+  images_list?: Array<{ url?: string; original?: string }>;
+  user?: { user_id?: string; nickname?: string; images?: string };
 }
 
 // --- Fetch helper ---
@@ -192,6 +224,33 @@ function mapDetailNote(raw: JZLDetailNote): NoteItem {
   };
 }
 
+function mapUserPostNote(raw: JZLUserPostNote): NoteItem {
+  const noteId = raw.note_id || raw.id || "";
+  const user = raw.user || {};
+  const firstImage = raw.images_list?.[0];
+  const coverImage = firstImage?.original || firstImage?.url || "";
+  const publishedAt = raw.create_time
+    ? new Date(raw.create_time * 1000).toISOString()
+    : new Date().toISOString();
+
+  return {
+    noteId,
+    title: raw.display_title || raw.title || "",
+    content: raw.desc || "",
+    author: user.nickname || "",
+    authorId: user.user_id || "",
+    coverImage,
+    url: `https://www.xiaohongshu.com/explore/${noteId}`,
+    noteType: raw.type === "video" ? "video" : "normal",
+    topics: [],
+    publishedAt,
+    likes: raw.likes || raw.liked_count || 0,
+    comments: raw.comments_count || 0,
+    collected: raw.collected_count || 0,
+    shared: raw.shared_count || 0,
+  };
+}
+
 // --- Adapter ---
 
 export class JZLAdapter implements DataSource {
@@ -220,22 +279,17 @@ export class JZLAdapter implements DataSource {
   }
 
   async getUserNotes(userId: string, _options?: UserNotesOptions): Promise<NoteItem[]> {
-    // user_post endpoint may fail (-1) for some users.
-    // On failure, caller (crawl.ts) falls back to searchNotes with username.
-    const res = await jzlFetch<JZLSearchResponse>(ENDPOINTS.userNotes, {
-      user_id: userId,
-      page: 1,
-    });
+    // user_post3 (v9) — returns notes[] with display_title, likes, etc.
+    // Currently unreliable (returns 0 results for tested users).
+    // Caller (crawl.ts) falls back to searchNotes with username on empty/error.
+    const res = await jzlFetch<JZLUserPostResponse>(
+      ENDPOINTS.userNotes,
+      { user_id: userId, page: 1, cursor: "" },
+      ENDPOINTS.userNotesFallback
+    );
 
-    // user_post may return same noteInfo/userInfo structure as search
-    const items = res.data.data || [];
-    if (items.length > 0 && "noteInfo" in items[0]) {
-      return items.map(mapSearchItem);
-    }
-
-    // Or it could return note_list (detail format) — handle both
-    const noteList = (res.data as unknown as { note_list?: JZLDetailNote[] }).note_list || [];
-    return noteList.map(mapDetailNote);
+    const notes = res.data.notes || [];
+    return notes.map(mapUserPostNote);
   }
 
   async getNoteDetail(noteId: string): Promise<NoteItem> {
