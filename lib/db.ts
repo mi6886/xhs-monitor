@@ -114,6 +114,14 @@ export function clearRules(): void {
   db.prepare("DELETE FROM rules").run();
 }
 
+export function clearAllData(): void {
+  const db = getDb();
+  db.prepare("DELETE FROM crawl_logs").run();
+  db.prepare("DELETE FROM results").run();
+  db.prepare("DELETE FROM candidates").run();
+  db.prepare("DELETE FROM rules").run();
+}
+
 export function getEnabledRules(): Rule[] {
   return getDb().prepare("SELECT * FROM rules WHERE enabled = 1").all() as Rule[];
 }

@@ -69,6 +69,9 @@ export async function runCrawl(): Promise<CrawlResult> {
             const publishedMs = new Date(note.publishedAt).getTime();
             if (Date.now() - publishedMs > windowMs) continue;
 
+            // Local relevance filter: verify the note actually matches the rule
+            if (!isRelevantToRule(note, rule)) continue;
+
             result.totalFetched++;
             const { isNew } = upsertCandidate(noteToCandidate(note, rule.id));
 
@@ -196,6 +199,48 @@ export async function runCrawl(): Promise<CrawlResult> {
 }
 
 // --- Helpers ---
+
+/**
+ * Verify that a note is actually relevant to the rule that found it.
+ * XHS search does semantic expansion, so "Rico有三猫" might return cat-related posts
+ * that have nothing to do with the actual blogger. This filter catches that.
+ */
+function isRelevantToRule(note: NoteItem, rule: Rule): boolean {
+  if (rule.type === "account") {
+    // Account rule: author name must match (or contain) the monitored account name
+    // Since we're using keyword search as fallback, we need to check the author
+    const ruleValue = rule.value.toLowerCase();
+    const author = note.author.toLowerCase();
+    // Exact or substring match in either direction
+    if (author.includes(ruleValue) || ruleValue.includes(author)) return true;
+    // Also check if the rule value appears in the title/content (the blogger might be mentioned)
+    const text = `${note.title} ${note.content}`.toLowerCase();
+    if (text.includes(ruleValue)) return true;
+    return false;
+  }
+
+  // Keyword rule: keyword must appear in title, content, or topics
+  const keyword = rule.value.toLowerCase();
+  const title = note.title.toLowerCase();
+  const content = note.content.toLowerCase();
+  const topicsStr = note.topics.join(" ").toLowerCase();
+
+  if (title.includes(keyword)) return true;
+  if (content.includes(keyword)) return true;
+  if (topicsStr.includes(keyword)) return true;
+
+  // For short/common keywords, also check partial match (e.g., "AI" in "AI工具")
+  // But only if keyword is at least 2 chars to avoid false positives
+  if (keyword.length >= 2) {
+    // Check if any word in title starts with the keyword
+    const words = title.split(/[\s,，。！？·\-_|/]+/);
+    for (const word of words) {
+      if (word.startsWith(keyword) || keyword.startsWith(word)) return true;
+    }
+  }
+
+  return false;
+}
 
 async function fetchNotesForRule(
   ds: ReturnType<typeof getDataSource>,

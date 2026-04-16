@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { insertRule, clearRules } from "@/lib/db";
+import { insertRule, clearAllData } from "@/lib/db";
 
 const SEED_RULES = {
   keywords: [
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  clearRules();
+  clearAllData();
 
   let count = 0;
 
