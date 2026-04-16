@@ -108,6 +108,10 @@ export interface Rule {
   created_at: string;
 }
 
+export function clearRules(): void {
+  getDb().prepare("DELETE FROM rules").run();
+}
+
 export function getEnabledRules(): Rule[] {
   return getDb().prepare("SELECT * FROM rules WHERE enabled = 1").all() as Rule[];
 }

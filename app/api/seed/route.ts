@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { insertRule } from "@/lib/db";
-import Database from "better-sqlite3";
-import path from "path";
+import { insertRule, clearRules } from "@/lib/db";
 
 const SEED_RULES = {
   keywords: [
@@ -32,11 +30,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Clear old rules first
-  const dbPath = path.resolve(process.env.DB_PATH || "./data/monitor.db");
-  const db = new Database(dbPath);
-  db.prepare("DELETE FROM rules").run();
-  db.close();
+  clearRules();
 
   let count = 0;
 
