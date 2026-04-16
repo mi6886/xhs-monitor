@@ -76,6 +76,7 @@ interface JZLAppNote {
   liked_count?: number;
   liked?: boolean;
   collected?: boolean;
+  xsec_token?: string;
   user?: { userid?: string; nickname?: string; images?: string };
   cover?: { url?: string; height?: number; width?: number };
   [key: string]: unknown;
@@ -108,6 +109,7 @@ interface JZLDetailNote {
   collected_count?: number;
   hash_tag?: Array<{ name: string }>;
   images_list?: Array<{ url?: string; original?: string }>;
+  share_info?: { link?: string };
   user?: { nickname?: string; userid?: string; name?: string; id?: string };
 }
 
@@ -225,6 +227,12 @@ function mapSearchItem(item: JZLSearchItem): NoteItem {
   };
 }
 
+function buildXhsUrl(noteId: string, xsecToken?: string): string {
+  const base = `https://www.xiaohongshu.com/explore/${noteId}`;
+  if (xsecToken) return `${base}?xsec_token=${encodeURIComponent(xsecToken)}&xsec_source=pc_search`;
+  return base;
+}
+
 function mapAppSearchNote(raw: JZLAppNote): NoteItem {
   const noteId = raw.id || raw.note_id || "";
   const user = raw.user || {};
@@ -239,7 +247,7 @@ function mapAppSearchNote(raw: JZLAppNote): NoteItem {
     author: user.nickname || "",
     authorId: user.userid || "",
     coverImage: raw.cover?.url || "",
-    url: `https://www.xiaohongshu.com/explore/${noteId}`,
+    url: buildXhsUrl(noteId, raw.xsec_token),
     noteType: raw.type === "video" ? "video" : "normal",
     topics: [],
     publishedAt,
@@ -267,7 +275,7 @@ function mapDetailNote(raw: JZLDetailNote): NoteItem {
     author: user.nickname || user.name || "",
     authorId: user.userid || user.id || "",
     coverImage,
-    url: `https://www.xiaohongshu.com/explore/${noteId}`,
+    url: raw.share_info?.link || buildXhsUrl(noteId),
     noteType: raw.type === "video" ? "video" : "normal",
     topics,
     publishedAt,
@@ -294,7 +302,7 @@ function mapUserPostNote(raw: JZLUserPostNote): NoteItem {
     author: user.nickname || "",
     authorId: user.user_id || "",
     coverImage,
-    url: `https://www.xiaohongshu.com/explore/${noteId}`,
+    url: buildXhsUrl(noteId),
     noteType: raw.type === "video" ? "video" : "normal",
     topics: [],
     publishedAt,
