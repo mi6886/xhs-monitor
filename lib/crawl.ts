@@ -207,13 +207,15 @@ export async function runCrawl(): Promise<CrawlResult> {
  */
 function isRelevantToRule(note: NoteItem, rule: Rule): boolean {
   if (rule.type === "account") {
-    // Account rule: author name must match (or contain) the monitored account name
-    // Since we're using keyword search as fallback, we need to check the author
+    // If we have user_id, match by authorId (precise)
+    if (rule.user_id && note.authorId) {
+      return note.authorId === rule.user_id;
+    }
+    // Fallback: match by author name
     const ruleValue = rule.value.toLowerCase();
     const author = note.author.toLowerCase();
-    // Exact or substring match in either direction
     if (author.includes(ruleValue) || ruleValue.includes(author)) return true;
-    // Also check if the rule value appears in the title/content (the blogger might be mentioned)
+    // Also check if the rule value appears in the title/content
     const text = `${note.title} ${note.content}`.toLowerCase();
     if (text.includes(ruleValue)) return true;
     return false;
