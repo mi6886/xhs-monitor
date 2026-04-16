@@ -27,3 +27,19 @@ jobs:
             echo "Crawl trigger failed with HTTP $http_code"
             exit 1
           fi
+
+      - name: Wait for crawl to complete
+        run: sleep 180
+
+      - name: Send notifications
+        run: |
+          response=$(curl -s -w "\n%{http_code}" -X POST \
+            "${{ secrets.RENDER_URL }}/api/notify" \
+            -H "Authorization: Bearer ${{ secrets.CRAWL_SECRET }}" \
+            -H "Content-Type: application/json")
+
+          http_code=$(echo "$response" | tail -1)
+          body=$(echo "$response" | head -n -1)
+
+          echo "HTTP Status: $http_code"
+          echo "Response: $body"
