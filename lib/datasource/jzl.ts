@@ -4,30 +4,68 @@ const BASE_URL = "https://api.yddm.com";
 
 const ENDPOINTS = {
   searchNotes: "/xhs/search_note_web",
-  userNotes: "/xhs/user_note_web",
-  noteDetail: "/xhs/note_detail2",
   searchNotesFallback: "/xhs/search_note_app",
-  userNotesFallback: "/xhs/user_note_app",
+  userNotes: "/xhs/user_post",
+  noteDetail: "/xhs/note_detail2",
   noteDetailFallback: "/xhs/note_detail4",
 };
 
 const RETRY_DELAYS_MS = [5_000, 15_000, 30_000];
 
-interface JZLResponse {
+// --- Response types for search endpoint (noteInfo/userInfo structure) ---
+
+interface JZLSearchResponse {
   code: number;
   msg: string;
   data: {
     cost?: number;
     balance?: number;
-    note_list?: JZLNote[];
-    items?: JZLSearchItem[];
-    notes?: JZLSearchItem[];
+    data?: JZLSearchItem[];
     has_more?: boolean;
+    total?: number;
+    keyword?: string;
     [key: string]: unknown;
   };
 }
 
-interface JZLNote {
+interface JZLSearchItem {
+  noteInfo: {
+    noteId: string;
+    title: string;
+    noteLink: string;
+    notePublishTime: string; // "2026-03-25 20:00:09"
+    likeNum: number;
+    cmtNum: number;
+    favNum: number;
+    readNum: number;
+    noteType: number; // 2 = video
+    videoDuration?: number;
+    noteImages?: Array<{ imageUrl: string }>;
+    isAdNote: number;
+  };
+  userInfo: {
+    nickName: string;
+    userId: string;
+    avatar: string;
+    fansNum: number;
+  };
+}
+
+// --- Response types for detail endpoint (note_list structure) ---
+
+interface JZLDetailResponse {
+  code: number;
+  msg: string;
+  data: {
+    cost?: number;
+    balance?: number;
+    note_list?: JZLDetailNote[];
+    user?: { nickname?: string; userid?: string };
+    [key: string]: unknown;
+  };
+}
+
+interface JZLDetailNote {
   id?: string;
   note_id?: string;
   title?: string;
@@ -38,23 +76,18 @@ interface JZLNote {
   shared_count?: number;
   comments_count?: number;
   collected_count?: number;
-  ip_location?: string;
   hash_tag?: Array<{ name: string }>;
   images_list?: Array<{ url?: string; original?: string }>;
   user?: { nickname?: string; userid?: string; name?: string; id?: string };
 }
 
-interface JZLSearchItem {
-  note_card?: JZLNote;
-  id?: string;
-  [key: string]: unknown;
-}
+// --- Fetch helper ---
 
-async function jzlFetch(
+async function jzlFetch<T extends { code: number; msg: string }>(
   endpoint: string,
   body: Record<string, unknown>,
   fallbackEndpoint?: string
-): Promise<JZLResponse> {
+): Promise<T> {
   const apiKey = process.env.JZL_API_KEY;
   if (!apiKey) throw new Error("JZL_API_KEY not configured");
 
@@ -73,18 +106,20 @@ async function jzlFetch(
         throw new Error(`HTTP ${res.status}: ${res.statusText}`);
       }
 
-      const json = (await res.json()) as JZLResponse;
+      const json = (await res.json()) as T;
 
       if (json.code === 0) return json;
 
+      // Rate limited — retry
       if (json.code === 1003 && attempt < RETRY_DELAYS_MS.length) {
         await sleep(RETRY_DELAYS_MS[attempt]);
         continue;
       }
 
-      if (fallbackEndpoint && attempt === 0 && json.code !== 0 && json.code !== 1003) {
-        console.log(`JZL primary ${endpoint} failed (code ${json.code}), trying fallback ${fallbackEndpoint}`);
-        return jzlFetch(fallbackEndpoint, body);
+      // Try fallback on non-rate-limit errors
+      if (fallbackEndpoint && attempt === 0 && json.code !== 1003) {
+        console.log(`JZL ${endpoint} failed (code ${json.code}), trying fallback ${fallbackEndpoint}`);
+        return jzlFetch<T>(fallbackEndpoint, body);
       }
 
       throw new Error(`JZL API error code ${json.code}: ${json.msg}`);
@@ -102,7 +137,34 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function mapNote(raw: JZLNote): NoteItem {
+// --- Mappers ---
+
+function mapSearchItem(item: JZLSearchItem): NoteItem {
+  const ni = item.noteInfo;
+  const ui = item.userInfo;
+  const firstImage = ni.noteImages?.[0];
+
+  return {
+    noteId: ni.noteId,
+    title: ni.title || "",
+    content: "", // search results don't include full content
+    author: ui.nickName || "",
+    authorId: ui.userId || "",
+    coverImage: firstImage?.imageUrl || "",
+    url: ni.noteLink || `https://www.xiaohongshu.com/explore/${ni.noteId}`,
+    noteType: ni.noteType === 2 ? "video" : "normal",
+    topics: [], // search results don't include topics
+    publishedAt: ni.notePublishTime
+      ? new Date(ni.notePublishTime).toISOString()
+      : new Date().toISOString(),
+    likes: ni.likeNum || 0,
+    comments: ni.cmtNum || 0,
+    collected: ni.favNum || 0,
+    shared: ni.readNum || 0, // readNum used as shares proxy
+  };
+}
+
+function mapDetailNote(raw: JZLDetailNote): NoteItem {
   const noteId = raw.id || raw.note_id || "";
   const user = raw.user || {};
   const topics = (raw.hash_tag || []).map((t) => t.name).filter(Boolean);
@@ -130,6 +192,8 @@ function mapNote(raw: JZLNote): NoteItem {
   };
 }
 
+// --- Adapter ---
+
 export class JZLAdapter implements DataSource {
   readonly name = "jzl";
 
@@ -143,39 +207,39 @@ export class JZLAdapter implements DataSource {
       body.note_type = options.noteType;
     }
 
-    const res = await jzlFetch(ENDPOINTS.searchNotes, body, ENDPOINTS.searchNotesFallback);
+    const res = await jzlFetch<JZLSearchResponse>(
+      ENDPOINTS.searchNotes,
+      body,
+      ENDPOINTS.searchNotesFallback
+    );
 
-    const items = res.data.items || res.data.notes || [];
-    const noteList = res.data.note_list || [];
-
-    if (noteList.length > 0) {
-      return noteList.map(mapNote);
-    }
-
-    return items.map((item: JZLSearchItem) => {
-      if (item.note_card) return mapNote(item.note_card);
-      return mapNote(item as unknown as JZLNote);
-    });
+    const items = res.data.data || [];
+    return items
+      .filter((item) => item.noteInfo && item.noteInfo.isAdNote !== 1)
+      .map(mapSearchItem);
   }
 
-  async getUserNotes(userId: string, options?: UserNotesOptions): Promise<NoteItem[]> {
-    const body: Record<string, unknown> = {
+  async getUserNotes(userId: string, _options?: UserNotesOptions): Promise<NoteItem[]> {
+    // user_post endpoint may fail (-1) for some users.
+    // On failure, caller (crawl.ts) falls back to searchNotes with username.
+    const res = await jzlFetch<JZLSearchResponse>(ENDPOINTS.userNotes, {
       user_id: userId,
       page: 1,
-    };
-    if (options?.limit) body.num = options.limit;
-
-    const res = await jzlFetch(ENDPOINTS.userNotes, body, ENDPOINTS.userNotesFallback);
-
-    const noteList = res.data.note_list || res.data.notes || res.data.items || [];
-    return noteList.map((n: JZLNote | JZLSearchItem) => {
-      if ("note_card" in n && n.note_card) return mapNote(n.note_card as JZLNote);
-      return mapNote(n as JZLNote);
     });
+
+    // user_post may return same noteInfo/userInfo structure as search
+    const items = res.data.data || [];
+    if (items.length > 0 && "noteInfo" in items[0]) {
+      return items.map(mapSearchItem);
+    }
+
+    // Or it could return note_list (detail format) — handle both
+    const noteList = (res.data as unknown as { note_list?: JZLDetailNote[] }).note_list || [];
+    return noteList.map(mapDetailNote);
   }
 
   async getNoteDetail(noteId: string): Promise<NoteItem> {
-    const res = await jzlFetch(
+    const res = await jzlFetch<JZLDetailResponse>(
       ENDPOINTS.noteDetail,
       { note_id: noteId },
       ENDPOINTS.noteDetailFallback
@@ -184,11 +248,11 @@ export class JZLAdapter implements DataSource {
     const note = res.data.note_list?.[0];
     if (!note) throw new Error(`Note ${noteId} not found`);
 
-    const user = (res.data as unknown as { user?: JZLNote["user"] }).user;
-    if (user && !note.user) {
-      note.user = user;
+    // note_detail2 returns user at top level
+    if (res.data.user && !note.user) {
+      note.user = res.data.user;
     }
 
-    return mapNote(note);
+    return mapDetailNote(note);
   }
 }
