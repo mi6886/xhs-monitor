@@ -1,0 +1,63 @@
+name: XHS Monitor
+
+on:
+  schedule:
+    # 北京时间 8:00, 11:00, 15:00, 17:00 (UTC = 北京时间 - 8)
+    - cron: '0 0 * * *'   # 北京 8:00
+    - cron: '0 3 * * *'   # 北京 11:00
+    - cron: '0 7 * * *'   # 北京 15:00
+    - cron: '0 9 * * *'   # 北京 17:00
+  workflow_dispatch:        # 支持手动触发
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 尝试下载上一轮的数据库（首次运行没有会跳过）
+      - name: Download previous database
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          name: monitor-db
+          path: data/
+          if_no_artifact_found: ignore
+          workflow: monitor.yml
+          search_artifacts: true
+
+      - name: Init database and import targets
+        run: |
+          python scripts/init_db.py
+          python scripts/import_targets.py
+        env:
+          TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Run monitor (discover + recheck + push)
+        run: python -m src.runner all
+        env:
+          TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      # 保存数据库给下一轮用
+      - name: Upload database
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monitor-db
+          path: data/monitor.db
+          retention-days: 30
+          overwrite: true

@@ -1,0 +1,77 @@
+# =============================================================
+# 小红书爆款笔记监控系统 — 主配置文件
+# =============================================================
+# 使用方式: 修改 mode 切换 test / daily 模式
+# test:  高频率、多目标、详细日志，用于 2-3 天高强度验证
+# daily: 低频率、精简目标、普通日志，用于长期稳定运行
+# =============================================================
+
+mode: test  # test | daily
+
+# --- 数据源切换 ---
+data_source: tikhub  # jzl | tikhub
+
+# --- JZL API ---
+jzl:
+  base_url: https://api.yddm.com
+  api_key: "${JZL_API_KEY}"          # 从环境变量读取，不要硬编码
+  request_interval: 2                 # 请求间隔（秒），防限频
+
+# --- TikHub API ---
+tikhub:
+  base_url: https://api.tikhub.io
+  api_key: "${TIKHUB_API_KEY}"       # 从环境变量读取
+  request_interval: 2
+
+# --- Telegram ---
+telegram:
+  bot_token: "${TELEGRAM_BOT_TOKEN}"
+  chat_id: "${TELEGRAM_CHAT_ID}"
+
+# --- 数据库 ---
+database:
+  path: data/monitor.db
+
+# --- 日志 ---
+logging:
+  dir: logs
+  level:
+    test: DEBUG
+    daily: INFO
+
+# --- 业务规则 ---
+rules:
+  watch_window_hours: 24              # 候选观察窗口
+  likes_threshold: 1000               # 爆款点赞阈值
+  publish_within_hours: 24            # 只关注 N 小时内发布的笔记
+
+# --- 发现任务 ---
+discover:
+  # 关键词搜索每次拉几页
+  keyword_pages:
+    test: 2
+    daily: 1
+  # 账号笔记列表每次拉几页
+  account_pages:
+    test: 1
+    daily: 1
+  # 批次间隔（秒）
+  batch_interval:
+    test: 1
+    daily: 3
+
+# --- 复查任务 ---
+recheck:
+  # 复查间隔（小时）— 即候选入库后多久复查一次
+  interval_hours:
+    test: 2
+    daily: 6
+  # 单次最多复查多少条
+  max_per_run:
+    test: 100
+    daily: 50
+
+# --- 种子文件 ---
+seeds:
+  accounts: seed_accounts.txt
+  keywords: seed_keywords.txt
