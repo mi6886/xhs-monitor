@@ -9,6 +9,10 @@ on:
     - cron: '0 9 * * *'   # 北京 17:00
   workflow_dispatch:        # 支持手动触发
 
+permissions:
+  actions: write
+  contents: read
+
 jobs:
   monitor:
     runs-on: ubuntu-latest
@@ -26,15 +30,13 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # 尝试下载上一轮的数据库（首次运行没有会跳过）
+      # 尝试下载上一轮的数据库
       - name: Download previous database
-        uses: dawidd6/action-download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: monitor-db
           path: data/
-          if_no_artifact_found: ignore
-          workflow: monitor.yml
-          search_artifacts: true
+        continue-on-error: true
 
       - name: Init database and import targets
         run: |
