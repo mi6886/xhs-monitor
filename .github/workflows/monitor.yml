@@ -10,8 +10,7 @@ on:
   workflow_dispatch:        # 支持手动触发
 
 permissions:
-  actions: write
-  contents: read
+  contents: write
 
 jobs:
   monitor:
@@ -30,14 +29,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # 尝试下载上一轮的数据库
-      - name: Download previous database
-        uses: actions/download-artifact@v4
-        with:
-          name: monitor-db
-          path: data/
-        continue-on-error: true
-
       - name: Init database and import targets
         run: |
           python scripts/init_db.py
@@ -54,12 +45,12 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-      # 保存数据库给下一轮用
-      - name: Upload database
+      # 把数据库 commit 回 repo，下一轮就能读到
+      - name: Commit database
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: monitor-db
-          path: data/monitor.db
-          retention-days: 30
-          overwrite: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f data/monitor.db
+          git diff --staged --quiet || git commit -m "data: update monitor.db [skip ci]"
+          git push
