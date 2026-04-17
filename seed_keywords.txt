@@ -29,3 +29,4 @@ AIGC
 aigc
 Claudecode
 千问
+Opus 4.7
