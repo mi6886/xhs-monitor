@@ -40,12 +40,16 @@ def main():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     seeds_cfg = cfg.get("seeds", {})
 
-    # 导入账号
+    # 导入账号（格式：昵称,user_id）
     accounts_file = os.path.join(root, seeds_cfg.get("accounts", "seed_accounts.txt"))
     accounts = load_seed_file(accounts_file)
     acc_count = 0
-    for name in accounts:
-        upsert_watch_target("account", name)
+    for line in accounts:
+        if "," in line:
+            name, user_id = line.split(",", 1)
+            upsert_watch_target("account", name.strip(), user_id=user_id.strip())
+        else:
+            upsert_watch_target("account", line.strip())
         acc_count += 1
     logger.info(f"导入账号: {acc_count} 条")
 
