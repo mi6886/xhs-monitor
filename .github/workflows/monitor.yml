@@ -2,15 +2,29 @@ name: XHS Monitor
 
 on:
   schedule:
-    # 北京时间 8:00, 11:00, 15:00, 17:00 (UTC = 北京时间 - 8)
-    - cron: '0 0 * * *'   # 北京 8:00
-    - cron: '0 3 * * *'   # 北京 11:00
-    - cron: '0 7 * * *'   # 北京 15:00
-    - cron: '0 9 * * *'   # 北京 17:00
-  workflow_dispatch:        # 支持手动触发
+    # 北京时间 07:00, 14:00, 20:00 (UTC = 北京时间 - 8)
+    - cron: '0 23 * * *'  # 北京 07:00
+    - cron: '0 6 * * *'   # 北京 14:00
+    - cron: '0 12 * * *'  # 北京 20:00
+  workflow_dispatch:
+    inputs:
+      run_period:
+        description: 'Telegram header period'
+        required: false
+        default: Auto
+        type: choice
+        options:
+          - Auto
+          - Morning
+          - Afternoon
+          - Evening
 
 permissions:
   contents: write
+
+concurrency:
+  group: xhs-monitor
+  cancel-in-progress: false
 
 jobs:
   monitor:
@@ -44,6 +58,7 @@ jobs:
           TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          XHS_RUN_PERIOD: ${{ github.event_name == 'workflow_dispatch' && inputs.run_period || (github.event.schedule == '0 23 * * *' && 'Morning' || github.event.schedule == '0 6 * * *' && 'Afternoon' || github.event.schedule == '0 12 * * *' && 'Evening' || '') }}
 
       # 把数据库 commit 回 repo，下一轮就能读到
       - name: Commit database

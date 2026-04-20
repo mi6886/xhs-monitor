@@ -1,8 +1,7 @@
 name: Crawl XHS
 
 on:
-  schedule:
-    - cron: '0 0,12 * * *'
+  # Kept for manual Render-triggered runs only. The scheduled job lives in monitor.yml.
   workflow_dispatch:
 
 jobs:
