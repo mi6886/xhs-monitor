@@ -21,6 +21,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: xhs-monitor
@@ -72,3 +74,17 @@ jobs:
           git add site/data/ 2>/dev/null || true
           git diff --staged --quiet || git commit -m "data: update monitor data"
           git push
+
+      - name: Configure Pages
+        if: always()
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy site
+        if: always()
+        uses: actions/deploy-pages@v4
