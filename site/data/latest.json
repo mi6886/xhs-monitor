@@ -1,17 +1,38 @@
 {
   "source": "xhs",
   "title": "小红书爆款笔记",
-  "date": "2026-04-20",
-  "period": "evening",
-  "period_label": "Evening",
-  "generated_at": "2026-04-20T21:26:15.189413+08:00",
-  "delivery_status": "empty",
-  "count": 0,
+  "date": "2026-04-21",
+  "period": "morning",
+  "period_label": "Morning",
+  "generated_at": "2026-04-21T07:53:12.222001+08:00",
+  "delivery_status": "success",
+  "count": 1,
   "stats": {
-    "total": 1115,
-    "candidate": 974,
-    "selected": 13,
-    "expired": 128
+    "total": 1128,
+    "candidate": 12,
+    "selected": 14,
+    "expired": 1102
   },
-  "notes": []
+  "notes": [
+    {
+      "note_id": "69e05d2e000000002200f5d0",
+      "title": "拼多多长期反复、无限、回购杂品类唯一一期",
+      "content": "#好物推荐[话题]# #平价好物[话题]# #ddg荔枝卸妆膏[话题]# #降噪耳机[话题]#  #oppoencofree4[话题]# #一次性内裤[话题]# #babycare山茶花[话题]# #",
+      "author": "47的朋友们",
+      "author_id": "",
+      "cover_image": "https://sns-na-i1.xhscdn.com/1040g2sg31v0p5u8fjue04a7pbq8g107f3vi65u8?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0&ap=12&sc=USR_PRV&sign=bd504bf79b93a4e13297b5a2b0f1ce27&t=69e6bc1f&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69e05d2e000000002200f5d0",
+      "note_type": "video",
+      "topics": [],
+      "published_at": "2026-04-20T18:47:35",
+      "likes": 3516,
+      "collects": 1470,
+      "comments": 110,
+      "shares": 0,
+      "source_type": "account",
+      "source_value": "47的朋友们",
+      "first_seen_at": "2026-04-20 23:52:03",
+      "last_checked_at": ""
+    }
+  ]
 }
