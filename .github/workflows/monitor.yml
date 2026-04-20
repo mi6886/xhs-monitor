@@ -2,10 +2,11 @@ name: XHS Monitor
 
 on:
   schedule:
-    # 北京时间 07:00, 14:00, 20:00 (UTC = 北京时间 - 8)
-    - cron: '0 23 * * *'  # 北京 07:00
-    - cron: '0 6 * * *'   # 北京 14:00
-    - cron: '0 12 * * *'  # 北京 20:00
+    # 北京时间 07:07, 14:07, 20:07 (UTC = 北京时间 - 8)
+    # 避开 GitHub Actions 整点高负载，降低 schedule 被延迟或丢弃的概率。
+    - cron: '7 23 * * *'  # 北京 07:07
+    - cron: '7 6 * * *'   # 北京 14:07
+    - cron: '7 12 * * *'  # 北京 20:07
   workflow_dispatch:
     inputs:
       run_period:
@@ -62,7 +63,7 @@ jobs:
           TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          XHS_RUN_PERIOD: ${{ github.event_name == 'workflow_dispatch' && inputs.run_period || (github.event.schedule == '0 23 * * *' && 'Morning' || github.event.schedule == '0 6 * * *' && 'Afternoon' || github.event.schedule == '0 12 * * *' && 'Evening' || '') }}
+          XHS_RUN_PERIOD: ${{ github.event_name == 'workflow_dispatch' && inputs.run_period || (github.event.schedule == '7 23 * * *' && 'Morning' || github.event.schedule == '7 6 * * *' && 'Afternoon' || github.event.schedule == '7 12 * * *' && 'Evening' || '') }}
 
       # 把数据库和静态网页数据 commit 回 repo，下一轮和 GitHub Pages 都能读到
       - name: Commit database and site data
