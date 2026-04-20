@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小红书爆款笔记</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --bg: #f7f4f2;
+      --surface: #ffffff;
+      --surface-soft: #f1ece8;
+      --text: #20242d;
+      --muted: #707785;
+      --border: #e3ddd7;
+      --accent: #e64a5f;
+      --accent-dark: #c9344a;
+      --gold: #a36b00;
+      --blue: #2563eb;
+      --green: #16805a;
+      --shadow: 0 12px 30px rgba(40, 35, 32, 0.08);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.88);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 18px 20px 14px;
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    input[type="date"] {
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--surface);
+      color: var(--text);
+      padding: 0 10px;
+      font: inherit;
+      font-size: 0.9rem;
+    }
+
+    .segmented {
+      display: inline-grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface-soft);
+    }
+
+    .period-btn, .source-btn {
+      height: 30px;
+      border: 0;
+      border-radius: 6px;
+      padding: 0 12px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.84rem;
+      white-space: nowrap;
+    }
+
+    .period-btn.active, .source-btn.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(230, 74, 95, 0.25);
+    }
+
+    main {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 24px 20px 56px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 13px 14px;
+      min-height: 76px;
+      box-shadow: 0 8px 20px rgba(40, 35, 32, 0.04);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 6px;
+    }
+
+    .metric strong {
+      font-size: 1.35rem;
+      letter-spacing: 0;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .source-toggle {
+      display: inline-grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface-soft);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-head {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+    }
+
+    .rank {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--text);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .rank.top { background: var(--accent); }
+
+    .title {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.42;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .cover {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .stat {
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 7px 6px;
+      background: #fbfaf8;
+      text-align: center;
+      min-width: 0;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 0.92rem;
+      overflow-wrap: anywhere;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.7rem;
+      margin-top: 1px;
+    }
+
+    .source {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #fff1f3;
+      color: var(--accent-dark);
+      border: 1px solid rgba(230, 74, 95, 0.22);
+      font-size: 0.76rem;
+      overflow-wrap: anywhere;
+    }
+
+    .actions {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      min-width: 92px;
+      padding: 0 12px;
+      border-radius: 7px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .link:hover { background: var(--accent-dark); }
+
+    .type {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .empty {
+      min-height: 280px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      padding: 30px;
+    }
+
+    @media (max-width: 980px) {
+      .topbar { grid-template-columns: 1fr; }
+      .controls { justify-content: flex-start; }
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .topbar, main { padding-left: 14px; padding-right: 14px; }
+      .summary, .grid { grid-template-columns: 1fr; }
+      .segmented, .source-toggle { width: 100%; }
+      .period-btn, .source-btn { padding: 0 8px; }
+      input[type="date"] { width: 100%; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <h1>小红书爆款笔记</h1>
+        <div class="subtitle" id="subtitle">读取 xhs-monitor 的定时抓取结果</div>
+      </div>
+      <div class="controls">
+        <input id="date-picker" type="date" aria-label="选择日期">
+        <div class="segmented" aria-label="选择时段">
+          <button class="period-btn active" data-period="morning">早间</button>
+          <button class="period-btn" data-period="afternoon">午间</button>
+          <button class="period-btn" data-period="evening">晚间</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary" aria-label="统计">
+      <div class="metric"><span>本时段精选</span><strong id="metric-count">0</strong></div>
+      <div class="metric"><span>总点赞</span><strong id="metric-likes">0</strong></div>
+      <div class="metric"><span>最高点赞</span><strong id="metric-top">0</strong></div>
+      <div class="metric"><span>数据库入选</span><strong id="metric-selected">0</strong></div>
+    </section>
+
+    <div class="toolbar">
+      <div class="status" id="status">正在加载...</div>
+      <div class="source-toggle" aria-label="来源筛选">
+        <button class="source-btn active" data-source="all">全部</button>
+        <button class="source-btn" data-source="keyword">关键词</button>
+        <button class="source-btn" data-source="account">账号</button>
+      </div>
+    </div>
+
+    <section class="grid" id="cards"></section>
+  </main>
+
+  <script>
+    const PERIOD_LABEL = {
+      morning: "早间",
+      afternoon: "午间",
+      evening: "晚间",
+    };
+
+    let currentDate = getBeijingDate();
+    let currentPeriod = guessPeriod();
+    let currentSource = "all";
+    let allNotes = [];
+
+    function getBeijingDate() {
+      const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Shanghai",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).formatToParts(new Date());
+      const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+      return `${values.year}-${values.month}-${values.day}`;
+    }
+
+    function guessPeriod() {
+      const hour = Number(new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Shanghai",
+        hour: "2-digit",
+        hour12: false,
+      }).format(new Date()));
+      if (hour < 12) return "morning";
+      if (hour < 18) return "afternoon";
+      return "evening";
+    }
+
+    function fmtNumber(value) {
+      const n = Number(value || 0);
+      if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
+      if (n >= 10000) return `${(n / 10000).toFixed(1)}万`;
+      if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
+      return String(n);
+    }
+
+    function fmtDate(value) {
+      if (!value) return "未知时间";
+      const normalized = value.includes("T") ? value : value.replace(" ", "T");
+      const d = new Date(normalized);
+      if (Number.isNaN(d.getTime())) return value.slice(0, 16);
+      return d.toLocaleString("zh-CN", {
+        timeZone: "Asia/Shanghai",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function setActiveButtons() {
+      document.querySelectorAll(".period-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.period === currentPeriod);
+      });
+      document.querySelectorAll(".source-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.source === currentSource);
+      });
+    }
+
+    async function loadData() {
+      setActiveButtons();
+      document.getElementById("status").textContent = "正在加载...";
+      document.getElementById("cards").innerHTML = "";
+
+      const filename = `data/final-${currentDate}-${currentPeriod}.json`;
+      try {
+        const res = await fetch(filename, { cache: "no-store" });
+        if (!res.ok) throw new Error("missing");
+        const data = await res.json();
+        allNotes = Array.isArray(data.notes) ? data.notes : [];
+        render(data);
+      } catch (error) {
+        allNotes = [];
+        renderEmpty(`没有找到 ${filename}`, "这个时段可能还没有运行，或者没有导出网页数据。");
+      }
+    }
+
+    function render(data) {
+      const filtered = currentSource === "all"
+        ? allNotes
+        : allNotes.filter(note => note.source_type === currentSource);
+      const sorted = [...filtered].sort((a, b) => Number(b.likes || 0) - Number(a.likes || 0));
+      const totalLikes = sorted.reduce((sum, note) => sum + Number(note.likes || 0), 0);
+      const topLikes = sorted[0] ? sorted[0].likes : 0;
+
+      document.getElementById("metric-count").textContent = String(sorted.length);
+      document.getElementById("metric-likes").textContent = fmtNumber(totalLikes);
+      document.getElementById("metric-top").textContent = fmtNumber(topLikes);
+      document.getElementById("metric-selected").textContent = fmtNumber(data.stats?.selected || 0);
+      document.getElementById("subtitle").textContent = `${data.date || currentDate} · ${PERIOD_LABEL[currentPeriod]} · ${data.delivery_status || "unknown"}`;
+      document.getElementById("status").textContent = data.generated_at
+        ? `更新于 ${fmtDate(data.generated_at)}，显示 ${sorted.length} / ${allNotes.length} 条`
+        : `显示 ${sorted.length} / ${allNotes.length} 条`;
+
+      if (sorted.length === 0) {
+        renderEmpty("这个筛选下暂无小红书爆款笔记", "如果 Telegram 本时段没有推送，网页也会显示为空。");
+        return;
+      }
+
+      const cards = document.getElementById("cards");
+      cards.innerHTML = sorted.map((note, index) => renderCard(note, index)).join("");
+    }
+
+    function renderCard(note, index) {
+      const rankClass = index < 3 ? "rank top" : "rank";
+      const cover = note.cover_image
+        ? `<img class="cover" src="${escapeHtml(note.cover_image)}" alt="" loading="lazy">`
+        : "";
+      const sourceType = note.source_type === "account" ? "账号" : "关键词";
+      const link = note.url
+        ? `<a class="link" href="${escapeHtml(note.url)}" target="_blank" rel="noopener">打开笔记</a>`
+        : `<span class="type">无链接</span>`;
+
+      return `
+        <article class="card">
+          <div class="card-head">
+            <div class="${rankClass}">${index + 1}</div>
+            <div>
+              <h2 class="title">${escapeHtml(note.title || "无标题")}</h2>
+              <div class="meta">
+                <span>${escapeHtml(note.author || "未知作者")}</span>
+                <span>${fmtDate(note.published_at)}</span>
+              </div>
+            </div>
+          </div>
+          ${cover}
+          <div class="stats">
+            <div class="stat"><b>${fmtNumber(note.likes)}</b><span>点赞</span></div>
+            <div class="stat"><b>${fmtNumber(note.collects)}</b><span>收藏</span></div>
+            <div class="stat"><b>${fmtNumber(note.comments)}</b><span>评论</span></div>
+            <div class="stat"><b>${fmtNumber(note.shares)}</b><span>转发</span></div>
+          </div>
+          <span class="source">${sourceType}: ${escapeHtml(note.source_value || "未知")}</span>
+          <div class="actions">
+            <span class="type">${note.note_type === "video" ? "视频笔记" : "图文笔记"}</span>
+            ${link}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderEmpty(title, detail) {
+      document.getElementById("metric-count").textContent = "0";
+      document.getElementById("metric-likes").textContent = "0";
+      document.getElementById("metric-top").textContent = "0";
+      document.getElementById("metric-selected").textContent = "0";
+      document.getElementById("status").textContent = title;
+      document.getElementById("cards").innerHTML = `
+        <div class="empty">
+          <div>
+            <h2>${escapeHtml(title)}</h2>
+            <p>${escapeHtml(detail)}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById("date-picker").value = currentDate;
+    document.getElementById("date-picker").addEventListener("change", event => {
+      currentDate = event.target.value;
+      loadData();
+    });
+
+    document.querySelectorAll(".period-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentPeriod = btn.dataset.period;
+        loadData();
+      });
+    });
+
+    document.querySelectorAll(".source-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentSource = btn.dataset.source;
+        setActiveButtons();
+        loadData();
+      });
+    });
+
+    currentPeriod = guessPeriod();
+    loadData();
+  </script>
+</body>
+</html>

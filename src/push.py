@@ -13,6 +13,7 @@ import requests
 
 from src.config import load_config
 from src.db import get_unpushed_selected, insert_push_record
+from src.export_site import export_digest
 
 logger = logging.getLogger(__name__)
 
@@ -163,6 +164,7 @@ def run_push():
     tg_cfg = cfg.get("telegram", {})
     bot_token = tg_cfg.get("bot_token", "")
     chat_id = tg_cfg.get("chat_id", "")
+    period = _get_period(datetime.now(ZoneInfo("Asia/Shanghai")))
 
     if not bot_token or not chat_id:
         logger.warning("Telegram 未配置，跳过推送")
@@ -174,6 +176,7 @@ def run_push():
     )
     if not notes:
         logger.info("无需推送的 24 小时内笔记")
+        export_digest([], period=period, delivery_status="empty")
         return
 
     logger.info(f"开始汇总推送: {len(notes)} 条 24 小时内待推送")
@@ -196,6 +199,8 @@ def run_push():
         insert_push_record(note["note_id"], status, error_msg=error_msg)
 
     if sent_all:
+        export_digest(notes, period=period, delivery_status="success")
         logger.info(f"推送完成: 成功={len(notes)}, 消息数={len(messages)}")
     else:
+        export_digest([], period=period, delivery_status="failed")
         logger.info(f"推送完成: 成功=0, 失败={len(notes)}")

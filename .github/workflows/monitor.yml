@@ -62,12 +62,13 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           XHS_RUN_PERIOD: ${{ github.event_name == 'workflow_dispatch' && inputs.run_period || (github.event.schedule == '0 23 * * *' && 'Morning' || github.event.schedule == '0 6 * * *' && 'Afternoon' || github.event.schedule == '0 12 * * *' && 'Evening' || '') }}
 
-      # 把数据库 commit 回 repo，下一轮就能读到
-      - name: Commit database
+      # 把数据库和静态网页数据 commit 回 repo，下一轮和 GitHub Pages 都能读到
+      - name: Commit database and site data
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f data/monitor.db
-          git diff --staged --quiet || git commit -m "data: update monitor.db [skip ci]"
+          git add site/data/ 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "data: update monitor data"
           git push
