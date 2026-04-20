@@ -101,10 +101,9 @@ def discover_by_keywords(client, cfg: dict):
         all_outside_window = False
         for page in range(1, pages + 1):
             try:
-                # sort=time_descending: 按时间倒序，最新的在前面
-                # 这样 24h 内的笔记自然排在第 1 页，不浪费积分
+                # TikHub 同时使用“一天内”筛选和热度排序，优先拿到 24h 内点赞最高的笔记。
                 resp = client.search_notes(keyword, page=page,
-                                           sort="time_descending")
+                                           sort="popularity_descending")
             except (JZLAPIError, TikHubAPIError) as e:
                 logger.error(f"关键词搜索失败: {keyword} page={page} error={e}")
                 break
@@ -122,7 +121,6 @@ def discover_by_keywords(client, cfg: dict):
             for item in items:
                 note_raw = item.get("note", item)  # 兼容不同层级
                 normalized = normalize_search_app(note_raw, source_value=keyword)
-                # 按时间倒序排列，如果这条已经超出窗口，后面的更旧，可以提前终止
                 if not _is_within_window(normalized.get("published_at"),
                                          cfg.get("rules", {}).get("publish_within_hours", 24)):
                     continue
@@ -130,7 +128,7 @@ def discover_by_keywords(client, cfg: dict):
                 raw_json = json.dumps(item, ensure_ascii=False)
                 _process_note(normalized, cfg, raw_json=raw_json)
 
-            # 如果整页都没有窗口内的笔记，后面的页更旧，不用继续翻页了
+            # TikHub 已按“一天内”过滤；这里仅作为 API 返回异常或时间解析异常时的保护。
             if not page_has_valid:
                 logger.debug(f"关键词 {keyword} 第 {page} 页无窗口内笔记，停止翻页")
                 break

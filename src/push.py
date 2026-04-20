@@ -7,7 +7,7 @@ Telegram 推送模块
 import logging
 import html
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import requests
 
@@ -117,6 +117,25 @@ def _format_digest_messages(notes: list[dict]) -> list[str]:
     return messages
 
 
+def _filter_recent_notes(notes: list[dict], hours: int) -> list[dict]:
+    """Keep only notes published within the configured recent window."""
+    cutoff = datetime.now() - timedelta(hours=hours)
+    recent_notes = []
+
+    for note in notes:
+        published_at = note.get("published_at")
+        if not published_at:
+            continue
+        try:
+            published_dt = datetime.fromisoformat(published_at)
+        except (TypeError, ValueError):
+            continue
+        if published_dt >= cutoff:
+            recent_notes.append(note)
+
+    return recent_notes
+
+
 def _send_telegram(bot_token: str, chat_id: str, text: str) -> bool:
     """发送 Telegram 消息。返回是否成功。"""
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
@@ -149,12 +168,15 @@ def run_push():
         logger.warning("Telegram 未配置，跳过推送")
         return
 
-    notes = get_unpushed_selected()
+    notes = _filter_recent_notes(
+        get_unpushed_selected(),
+        cfg.get("rules", {}).get("publish_within_hours", 24),
+    )
     if not notes:
-        logger.info("无需推送的笔记")
+        logger.info("无需推送的 24 小时内笔记")
         return
 
-    logger.info(f"开始汇总推送: {len(notes)} 条待推送")
+    logger.info(f"开始汇总推送: {len(notes)} 条 24 小时内待推送")
 
     messages = _format_digest_messages(notes)
     sent_all = True

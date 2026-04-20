@@ -6,7 +6,7 @@
 # daily: 低频率、精简目标、普通日志，用于长期稳定运行
 # =============================================================
 
-mode: test  # test | daily
+mode: daily  # test | daily
 
 # --- 数据源切换 ---
 data_source: tikhub  # jzl | tikhub
