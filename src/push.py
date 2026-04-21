@@ -39,11 +39,21 @@ def _format_header(notes: list[dict]) -> str:
     return f"🔥 小红书爆款笔记 | {now:%Y-%m-%d} {period} | {len(notes)}条"
 
 
+def _format_published_at(value: str | None) -> str:
+    """Return a compact Beijing-readable published time."""
+    if not value:
+        return "未知"
+    try:
+        return datetime.fromisoformat(value).strftime("%Y-%m-%d %H:%M")
+    except (TypeError, ValueError):
+        return value[:16].replace("T", " ") or "未知"
+
+
 def _format_item(index: int, note: dict) -> str:
     """Format one note as a compact digest item."""
     title = html.escape(note.get("title") or "无标题")
     author = html.escape(note.get("author") or "未知作者")
-    published = html.escape((note.get("published_at") or "")[:16] or "未知")
+    published = html.escape(_format_published_at(note.get("published_at")))
     source = html.escape(note.get("source_value") or "未知")
     url = html.escape(note.get("url") or "")
     likes = int(note.get("likes") or 0)
@@ -53,9 +63,9 @@ def _format_item(index: int, note: dict) -> str:
 
     lines = [
         f"{index}. {title}",
-        author,
         published,
         f"🩷 {likes}  ⭐️ {collects}  💬 {comments}  🔄 {shares}",
+        f"@{author}",
         f"🔍 命中关键词: {source}",
     ]
     if url:
@@ -69,7 +79,7 @@ def _format_plain_item(index: int, note: dict) -> str:
     """Format one note without Telegram HTML markup."""
     title = note.get("title") or "无标题"
     author = note.get("author") or "未知作者"
-    published = (note.get("published_at") or "")[:16] or "未知"
+    published = _format_published_at(note.get("published_at"))
     source = note.get("source_value") or "未知"
     likes = int(note.get("likes") or 0)
     collects = int(note.get("collects") or 0)
@@ -79,9 +89,9 @@ def _format_plain_item(index: int, note: dict) -> str:
 
     return "\n".join([
         f"{index}. {title}",
-        author,
         published,
         f"🩷 {likes}  ⭐️ {collects}  💬 {comments}  🔄 {shares}",
+        f"@{author}",
         f"🔍 命中关键词: {source}",
         url,
     ])
