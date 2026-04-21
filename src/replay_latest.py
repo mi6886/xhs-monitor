@@ -39,8 +39,8 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    setup_logging()
     cfg = load_config()
-    setup_logging(cfg)
 
     tg_cfg = cfg.get("telegram", {})
     bot_token = tg_cfg.get("bot_token", "")
