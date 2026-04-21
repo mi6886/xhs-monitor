@@ -49,12 +49,22 @@ def _format_published_at(value: str | None) -> str:
         return value[:16].replace("T", " ") or "未知"
 
 
+def _format_source_line(note: dict, html_mode: bool) -> str:
+    """Label keyword and account sources without conflating them."""
+    source = note.get("source_value") or "未知"
+    if html_mode:
+        source = html.escape(source)
+
+    if note.get("source_type") == "account":
+        return f"👤 来源账号: {source}"
+    return f"🔍 命中关键词: {source}"
+
+
 def _format_item(index: int, note: dict) -> str:
     """Format one note as a compact digest item."""
     title = html.escape(note.get("title") or "无标题")
     author = html.escape(note.get("author") or "未知作者")
     published = html.escape(_format_published_at(note.get("published_at")))
-    source = html.escape(note.get("source_value") or "未知")
     url = html.escape(note.get("url") or "")
     likes = int(note.get("likes") or 0)
     collects = int(note.get("collects") or 0)
@@ -66,7 +76,7 @@ def _format_item(index: int, note: dict) -> str:
         published,
         f"🩷 {likes}  ⭐️ {collects}  💬 {comments}  🔄 {shares}",
         f"@{author}",
-        f"🔍 命中关键词: {source}",
+        _format_source_line(note, html_mode=True),
     ]
     if url:
         lines.append(f'<a href="{url}">笔记链接</a>')
@@ -80,7 +90,6 @@ def _format_plain_item(index: int, note: dict) -> str:
     title = note.get("title") or "无标题"
     author = note.get("author") or "未知作者"
     published = _format_published_at(note.get("published_at"))
-    source = note.get("source_value") or "未知"
     likes = int(note.get("likes") or 0)
     collects = int(note.get("collects") or 0)
     comments = int(note.get("comments") or 0)
@@ -92,7 +101,7 @@ def _format_plain_item(index: int, note: dict) -> str:
         published,
         f"🩷 {likes}  ⭐️ {collects}  💬 {comments}  🔄 {shares}",
         f"@{author}",
-        f"🔍 命中关键词: {source}",
+        _format_source_line(note, html_mode=False),
         url,
     ])
 
