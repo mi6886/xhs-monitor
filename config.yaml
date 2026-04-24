@@ -57,7 +57,7 @@ llm_cleaning:
   scorecard_path: docs/topic_scorecard_v1.md
   push_score_threshold: 35
   strong_score_threshold: 50
-  fail_open: true                     # LLM 临时不可用时保留原有点赞阈值逻辑，避免漏推
+  fail_open: false                    # LLM 临时不可用时不推送，保留为 candidate 等下次重试
 
 # --- 发现任务 ---
 discover:

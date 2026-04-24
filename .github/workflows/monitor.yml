@@ -24,6 +24,11 @@ on:
         required: false
         default: false
         type: boolean
+      llm_smoke_test:
+        description: 'Only test the configured LLM filter without crawling or pushing'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -54,15 +59,21 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Replay latest exported digest
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.replay_latest }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.replay_latest && !inputs.llm_smoke_test }}
         run: python -m src.replay_latest --period "$XHS_RUN_PERIOD"
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           XHS_RUN_PERIOD: ${{ inputs.run_period == 'Auto' && 'Morning' || inputs.run_period }}
 
+      - name: Run LLM smoke test
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.llm_smoke_test }}
+        run: python -m src.llm_smoke_test
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+
       - name: Init database and import targets
-        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.replay_latest) }}
+        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
         run: |
           python scripts/init_db.py
           python scripts/import_targets.py
@@ -73,7 +84,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
       - name: Run monitor (discover + recheck + push)
-        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.replay_latest) }}
+        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
         run: python -m src.runner all
         env:
           TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
@@ -84,7 +95,7 @@ jobs:
 
       # 把数据库和静态网页数据 commit 回 repo，下一轮和 GitHub Pages 都能读到
       - name: Commit database and site data
-        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && inputs.replay_latest) }}
+        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -94,15 +105,15 @@ jobs:
           git push
 
       - name: Configure Pages
-        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && inputs.replay_latest) }}
+        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
         uses: actions/configure-pages@v5
 
       - name: Upload site
-        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && inputs.replay_latest) }}
+        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
       - name: Deploy site
-        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && inputs.replay_latest) }}
+        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
         uses: actions/deploy-pages@v4

@@ -47,6 +47,7 @@ def _fallback_decision(reason: str, should_push: bool = True) -> dict:
     return {
         "is_relevant": should_push,
         "should_push": should_push,
+        "defer": not should_push,
         "matched_topic": "未进行 LLM 审核",
         "category": "未分类",
         "quality_score": 60 if should_push else 0,
@@ -74,10 +75,10 @@ def review_note(note: dict, cfg: dict) -> dict:
     scorecard = _load_scorecard(llm_cfg)
     push_score_threshold = int(llm_cfg.get("push_score_threshold", 35))
     strong_score_threshold = int(llm_cfg.get("strong_score_threshold", 50))
+    model = llm_cfg.get("model") or "gpt-4o-mini"
     payload = {
-        "model": llm_cfg.get("model") or "gpt-4o-mini",
+        "model": model,
         "temperature": 0,
-        "response_format": {"type": "json_object"},
         "messages": [
             {
                 "role": "system",
@@ -131,6 +132,7 @@ def review_note(note: dict, cfg: dict) -> dict:
     timeout = int(llm_cfg.get("timeout_seconds", 20))
 
     try:
+        logger.info("LLM 语义清洗请求: note_id=%s model=%s", note.get("note_id"), model)
         resp = requests.post(
             f"{base_url}/chat/completions",
             headers={
@@ -142,9 +144,16 @@ def review_note(note: dict, cfg: dict) -> dict:
             json=payload,
             timeout=timeout,
         )
-        resp.raise_for_status()
+        if not resp.ok:
+            logger.error(
+                "LLM API 返回错误: note_id=%s status=%s body=%s",
+                note.get("note_id"),
+                resp.status_code,
+                resp.text[:500],
+            )
+            resp.raise_for_status()
         content = resp.json()["choices"][0]["message"]["content"]
-        decision = json.loads(content)
+        decision = _parse_json_object(content)
     except Exception as exc:
         logger.error("LLM 语义清洗失败: note_id=%s error=%s", note.get("note_id"), exc)
         return _fallback_decision(
@@ -171,13 +180,33 @@ def review_note(note: dict, cfg: dict) -> dict:
     }
 
 
-def review_and_promote(note: dict, cfg: dict) -> bool:
+def _parse_json_object(content: str) -> dict:
+    """Parse strict JSON, with a small fallback for fenced JSON replies."""
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError:
+        start = content.find("{")
+        end = content.rfind("}")
+        if start >= 0 and end > start:
+            return json.loads(content[start:end + 1])
+        raise
+
+
+def review_and_promote(note: dict, cfg: dict) -> bool | None:
     """Run semantic review before moving a hot candidate to selected."""
     note_id = note.get("note_id")
     decision = review_note(note, cfg)
 
     if note_id:
         save_llm_review(note_id, decision)
+
+    if decision.get("defer"):
+        logger.warning(
+            "LLM 未完成，保留候选等待下次重试: %s reason=%s",
+            note_id,
+            decision.get("reason"),
+        )
+        return None
 
     if decision.get("should_push"):
         promote_note(note_id)

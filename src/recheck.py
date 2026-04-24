@@ -73,10 +73,11 @@ def run_recheck():
             if max_likes >= likes_threshold:
                 note_for_review = dict(note)
                 note_for_review["likes"] = max_likes
-                if review_and_promote(note_for_review, cfg):
+                review_result = review_and_promote(note_for_review, cfg)
+                if review_result is True:
                     promoted += 1
                     logger.info(f"窗口关闭时晋升: {note_id} max_likes={max_likes}")
-                else:
+                elif review_result is False:
                     expired += 1
             else:
                 expire_note(note_id)
@@ -131,9 +132,10 @@ def run_recheck():
                 "comments": comments,
                 "shares": shares,
             })
-            if review_and_promote(note_for_review, cfg):
+            review_result = review_and_promote(note_for_review, cfg)
+            if review_result is True:
                 promoted += 1
-            else:
+            elif review_result is False:
                 expired += 1
 
         checked += 1
