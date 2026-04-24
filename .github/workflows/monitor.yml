@@ -29,6 +29,11 @@ on:
         required: false
         default: false
         type: boolean
+      llm_review_hot_candidates:
+        description: 'Only review hot candidates that previously fell back without pushing'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -72,8 +77,14 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
 
+      - name: Review hot candidates with LLM
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.llm_review_hot_candidates }}
+        run: python -m src.review_hot_candidates --min-likes 1000 --failed-fallback-only
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+
       - name: Init database and import targets
-        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
+        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test || inputs.llm_review_hot_candidates)) }}
         run: |
           python scripts/init_db.py
           python scripts/import_targets.py
@@ -84,7 +95,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
       - name: Run monitor (discover + recheck + push)
-        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
+        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test || inputs.llm_review_hot_candidates)) }}
         run: python -m src.runner all
         env:
           TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
@@ -95,7 +106,7 @@ jobs:
 
       # 把数据库和静态网页数据 commit 回 repo，下一轮和 GitHub Pages 都能读到
       - name: Commit database and site data
-        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
+        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test || inputs.llm_review_hot_candidates)) }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -105,15 +116,15 @@ jobs:
           git push
 
       - name: Configure Pages
-        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
+        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test || inputs.llm_review_hot_candidates)) }}
         uses: actions/configure-pages@v5
 
       - name: Upload site
-        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
+        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test || inputs.llm_review_hot_candidates)) }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
       - name: Deploy site
-        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test)) }}
+        if: ${{ always() && !(github.event_name == 'workflow_dispatch' && (inputs.replay_latest || inputs.llm_smoke_test || inputs.llm_review_hot_candidates)) }}
         uses: actions/deploy-pages@v4
