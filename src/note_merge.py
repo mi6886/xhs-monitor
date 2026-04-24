@@ -87,6 +87,13 @@ def _finish_note(note: dict) -> dict:
     return note
 
 
+def _score_value(note: dict) -> int:
+    try:
+        return int(note.get("llm_score") or 0)
+    except (TypeError, ValueError):
+        return 0
+
+
 def merge_duplicate_notes(notes: list[dict]) -> list[dict]:
     """Merge display duplicates while preserving the original source records."""
     groups: dict[tuple[str, str, str], dict] = {}
@@ -119,6 +126,9 @@ def merge_duplicate_notes(notes: list[dict]) -> list[dict]:
 
         note_likes = int(note.get("likes") or 0)
         existing_likes = int(existing.get("likes") or 0)
+        note_score = _score_value(note)
+        existing_score = _score_value(existing)
+
         if note_likes > existing_likes:
             for field in (
                 "note_id",
@@ -131,6 +141,11 @@ def merge_duplicate_notes(notes: list[dict]) -> list[dict]:
                 "last_checked_at",
             ):
                 if note.get(field):
+                    existing[field] = note.get(field)
+
+        if note_score > existing_score:
+            for field in ("llm_score", "llm_topic", "llm_reason", "llm_category", "llm_detail"):
+                if note.get(field) is not None:
                     existing[field] = note.get(field)
 
         for metric in ("likes", "collects", "comments", "shares"):

@@ -54,6 +54,10 @@ def _clean_note(note: dict) -> dict:
         "source_types": note.get("source_types") or [],
         "source_values": note.get("source_values") or [],
         "merged_note_ids": note.get("merged_note_ids") or [note.get("note_id", "")],
+        "llm_score": note.get("llm_score"),
+        "llm_topic": note.get("llm_topic") or "",
+        "llm_reason": note.get("llm_reason") or "",
+        "llm_category": note.get("llm_category") or "",
         "first_seen_at": note.get("first_seen_at") or "",
         "last_checked_at": note.get("last_checked_at") or "",
     }

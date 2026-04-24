@@ -67,6 +67,27 @@ def _format_source_line(note: dict, html_mode: bool) -> str:
     return f"🔍 命中关键词: {escaped_source}"
 
 
+def _format_score_line(note: dict, html_mode: bool) -> str | None:
+    """Format the LLM topic score when it is available."""
+    score = note.get("llm_score")
+    if score is None or score == "":
+        return None
+
+    try:
+        score_text = str(int(score))
+    except (TypeError, ValueError):
+        score_text = str(score)
+
+    category = note.get("llm_category") or note.get("llm_topic") or ""
+    category = str(category)
+    if html_mode:
+        category = html.escape(category)
+
+    if category:
+        return f"🧠 选题评分: {score_text}/100｜{category}"
+    return f"🧠 选题评分: {score_text}/100"
+
+
 def _format_item(index: int, note: dict) -> str:
     """Format one note as a compact digest item."""
     title = html.escape(note.get("title") or "无标题")
@@ -82,9 +103,14 @@ def _format_item(index: int, note: dict) -> str:
         f"{index}. {title}",
         published,
         f"🩷 {likes}  ⭐️ {collects}  💬 {comments}  🔄 {shares}",
+    ]
+    score_line = _format_score_line(note, html_mode=True)
+    if score_line:
+        lines.append(score_line)
+    lines.extend([
         f"@{author}",
         _format_source_line(note, html_mode=True),
-    ]
+    ])
     if url:
         lines.append(f'<a href="{url}">笔记链接</a>')
     else:
@@ -103,14 +129,20 @@ def _format_plain_item(index: int, note: dict) -> str:
     shares = int(note.get("shares") or 0)
     url = note.get("url") or "无链接"
 
-    return "\n".join([
+    lines = [
         f"{index}. {title}",
         published,
         f"🩷 {likes}  ⭐️ {collects}  💬 {comments}  🔄 {shares}",
+    ]
+    score_line = _format_score_line(note, html_mode=False)
+    if score_line:
+        lines.append(score_line)
+    lines.extend([
         f"@{author}",
         _format_source_line(note, html_mode=False),
         url,
     ])
+    return "\n".join(lines)
 
 
 def format_plain_digest(notes: list[dict]) -> str:
