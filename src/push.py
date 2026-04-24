@@ -14,6 +14,7 @@ import requests
 from src.config import load_config
 from src.db import get_unpushed_selected, insert_push_record
 from src.export_site import export_digest
+from src.note_merge import merge_duplicate_notes
 
 logger = logging.getLogger(__name__)
 
@@ -51,13 +52,19 @@ def _format_published_at(value: str | None) -> str:
 
 def _format_source_line(note: dict, html_mode: bool) -> str:
     """Label keyword and account sources without conflating them."""
-    source = note.get("source_value") or "未知"
-    if html_mode:
-        source = html.escape(source)
+    source_values = note.get("source_values")
+    if isinstance(source_values, list) and source_values:
+        source = "、".join(str(value) for value in source_values if str(value).strip())
+    else:
+        source = note.get("source_value") or "未知"
+
+    escaped_source = html.escape(source) if html_mode else source
 
     if note.get("source_type") == "account":
-        return f"👤 来源账号: {source}"
-    return f"🔍 命中关键词: {source}"
+        return f"👤 来源账号: {escaped_source}"
+    if note.get("source_type") == "mixed":
+        return f"📌 来源: {escaped_source}"
+    return f"🔍 命中关键词: {escaped_source}"
 
 
 def _format_item(index: int, note: dict) -> str:
@@ -108,7 +115,8 @@ def _format_plain_item(index: int, note: dict) -> str:
 
 def format_plain_digest(notes: list[dict]) -> str:
     """Format selected notes in the exact plain-text style requested by the user."""
-    sorted_notes = sorted(notes, key=lambda n: int(n.get("likes") or 0), reverse=True)
+    display_notes = merge_duplicate_notes(notes)
+    sorted_notes = sorted(display_notes, key=lambda n: int(n.get("likes") or 0), reverse=True)
     return "\n\n".join(
         _format_plain_item(index, note)
         for index, note in enumerate(sorted_notes, 1)
@@ -117,7 +125,8 @@ def format_plain_digest(notes: list[dict]) -> str:
 
 def _format_digest_messages(notes: list[dict]) -> list[str]:
     """Format selected notes into one or more Telegram-safe digest messages."""
-    sorted_notes = sorted(notes, key=lambda n: int(n.get("likes") or 0), reverse=True)
+    display_notes = merge_duplicate_notes(notes)
+    sorted_notes = sorted(display_notes, key=lambda n: int(n.get("likes") or 0), reverse=True)
     header = _format_header(sorted_notes)
     messages: list[str] = []
     current = header
@@ -198,7 +207,12 @@ def run_push():
         export_digest([], period=period, delivery_status="empty")
         return
 
-    logger.info(f"开始汇总推送: {len(notes)} 条 24 小时内待推送")
+    display_notes = merge_duplicate_notes(notes)
+    logger.info(
+        "开始汇总推送: raw=%s merged=%s 条 24 小时内待推送",
+        len(notes),
+        len(display_notes),
+    )
 
     messages = _format_digest_messages(notes)
     sent_all = True
@@ -218,8 +232,13 @@ def run_push():
         insert_push_record(note["note_id"], status, error_msg=error_msg)
 
     if sent_all:
-        export_digest(notes, period=period, delivery_status="success")
-        logger.info(f"推送完成: 成功={len(notes)}, 消息数={len(messages)}")
+        export_digest(display_notes, period=period, delivery_status="success")
+        logger.info(
+            "推送完成: raw_success=%s, merged_display=%s, 消息数=%s",
+            len(notes),
+            len(display_notes),
+            len(messages),
+        )
     else:
         export_digest([], period=period, delivery_status="failed")
         logger.info(f"推送完成: 成功=0, 失败={len(notes)}")
