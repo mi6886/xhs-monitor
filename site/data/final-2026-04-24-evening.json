@@ -4,118 +4,31 @@
   "date": "2026-04-24",
   "period": "evening",
   "period_label": "Evening",
-  "generated_at": "2026-04-24T20:56:56.963495+08:00",
+  "generated_at": "2026-04-24T22:04:28.166996+08:00",
   "delivery_status": "success",
-  "count": 6,
+  "count": 4,
   "stats": {
-    "total": 4057,
-    "candidate": 666,
-    "selected": 132,
-    "expired": 3259
+    "total": 4361,
+    "candidate": 947,
+    "selected": 136,
+    "expired": 3278
   },
   "notes": [
     {
-      "note_id": "69ea1d570000000019025c05",
-      "title": "蛇院女生的霍格沃茨浪漫舞会（已屏蔽麻瓜）",
-      "content": "#ai  #AIGC  #哈利波特  #斯莱特林  #霍格沃茨  #蛇院  #格兰芬多  #赫奇帕奇  #哈迷聚集地",
-      "author": "JEN的很AI",
-      "author_id": "65254aaa000000002a02b763",
-      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g34o31vaa3n78hu1g5p959alaldr3c7hsd90?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=bef9d3893bff761ce5073cec6d4a952b&t=69eb66ea&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ea1d570000000019025c05?xsec_token=YBJQqKaZ7NqkvuougYFV4Jq4VbTHMeoA-GrJ-o4MfVeGA=&xsec_source=pc_search",
-      "note_type": "video",
-      "topics": [],
-      "published_at": "2026-04-23T21:23:35",
-      "likes": 11500,
-      "collects": 1370,
-      "comments": 209,
-      "shares": 555,
-      "source_type": "keyword",
-      "source_value": "aigc",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "aigc"
-      ],
-      "merged_note_ids": [
-        "69ea1d570000000019025c05"
-      ],
-      "first_seen_at": "2026-04-24 12:49:49",
-      "last_checked_at": ""
-    },
-    {
-      "note_id": "69ea17f80000000011020004",
-      "title": "保姆级教程！彻底搞懂Claude Code Skill！",
-      "content": "本期视频我将手把手教大家在Claude Code中安装和使用Skill,内容包括：Skill是什么、怎样安装和创建Ski",
-      "author": "我是阿众",
-      "author_id": "5c55880f0000000012004d14",
-      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g34o31va9gkpb2s105n2lh07kgj8k0ghjukg?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=4c0899fa9c8af241f2ab43ea7917ca75&t=69eb6679&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ea17f80000000011020004?xsec_token=YBJQqKaZ7NqkvuougYFV4Jq1DX-su8NG_x8s64MFb-3KE=&xsec_source=pc_search",
-      "note_type": "video",
-      "topics": [],
-      "published_at": "2026-04-23T21:00:40",
-      "likes": 2794,
-      "collects": 5581,
-      "comments": 46,
-      "shares": 485,
-      "source_type": "keyword",
-      "source_value": "Claudecode",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "Claudecode"
-      ],
-      "merged_note_ids": [
-        "69ea17f80000000011020004"
-      ],
-      "first_seen_at": "2026-04-23 14:08:05",
-      "last_checked_at": "2026-04-24 12:50:00"
-    },
-    {
-      "note_id": "69ead8ec0000000020000805",
-      "title": "《罗福莉的首次访谈：AI范式已然巨变！》完整版",
-      "content": "2026年，大模型战争全面升级，掀开了第二幕——从Pre-train（预训练）主导的Chat时代，转向Post-trai",
-      "author": "张小珺",
-      "author_id": "5fede947000000000100603e",
-      "cover_image": "https://sns-na-i2.xhscdn.com/spectrum/1040g0k031vahcrnh1m005nvdt53g8o1uro79gbg?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4/codec/66&ap=5&sc=SRH_PRV&sign=75ee5048b13cfffa8d310b8f8a0011d3&t=69eb666d&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ead8ec0000000020000805?xsec_token=YBwgeUen5aWG-pBOSJ8b4Dc-O98yhF_Vooqu5LyZArQAs=&xsec_source=pc_search",
-      "note_type": "video",
-      "topics": [],
-      "published_at": "2026-04-24T12:02:41",
-      "likes": 1538,
-      "collects": 1393,
-      "comments": 99,
-      "shares": 555,
-      "source_type": "keyword",
-      "source_value": "openclaw",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "openclaw"
-      ],
-      "merged_note_ids": [
-        "69ead8ec0000000020000805"
-      ],
-      "first_seen_at": "2026-04-24 12:45:43",
-      "last_checked_at": "2026-04-24 12:50:30"
-    },
-    {
-      "note_id": "69ea93d7000000000f03ac00",
-      "title": "OpenAI GPT-5.5 重回 AI 领域毫无争议第一",
-      "content": "OpenAI 新模型以 3 分优势登顶 Artificial Analysis Intelligence Index，打",
-      "author": "Artificial Analysis",
-      "author_id": "69ea6345000000000d034c02",
-      "cover_image": "https://sns-na-i6.xhscdn.com/oss-sg/notes_pre_post/1040g3mo31vatfvngni005qfacd2jej021su5udo?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=5b38c8d1a29e73f695962a01008e89dc&t=69eb670a&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ea93d7000000000f03ac00?xsec_token=YBKYJ5vOicwnT3ds5ZF_0BVRLzj7mRywi45NjMwqt-ZuI=&xsec_source=pc_search",
+      "note_id": "69eae9f7000000001f031803",
+      "title": "DeepSeek发布V4，并承认与Claude存在差距",
+      "content": "今天 DeepSeek V4 预览版上线了，我第一时间去看了官方公告，然后被一句话逗乐了。 他们在介绍 V4-Pro 的",
+      "author": "浩然AI大厂日记",
+      "author_id": "686f6214000000000d02c8bb",
+      "cover_image": "https://sns-na-i6.xhscdn.com/1040g00831vb2q9pijq6g5q3fc8a3di5rev34f1o?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=b6ac6540bef0969fc145112febd5d55a&t=69eb7743&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69eae9f7000000001f031803?xsec_token=YBgGy5nPIWJjzqD8m7A0ObI3_7IzqG8_n6_ZCXDXIBAWg=&xsec_source=pc_search",
       "note_type": "normal",
       "topics": [],
-      "published_at": "2026-04-24T05:49:11",
-      "likes": 1528,
-      "collects": 351,
-      "comments": 262,
-      "shares": 597,
+      "published_at": "2026-04-24T11:56:39",
+      "likes": 4024,
+      "collects": 820,
+      "comments": 1241,
+      "shares": 878,
       "source_type": "keyword",
       "source_value": "Opus 4.7",
       "source_types": [
@@ -125,67 +38,112 @@
         "Opus 4.7"
       ],
       "merged_note_ids": [
-        "69ea93d7000000000f03ac00"
+        "69eae9f7000000001f031803"
       ],
-      "first_seen_at": "2026-04-24 12:50:21",
+      "llm_score": 58,
+      "llm_topic": "DeepSeek V4发布、AI模型对比、行业动态",
+      "llm_reason": "事件速报品类+时效首发（V4预览版刚上线）+AI趋势热点+反常识信号（承认与Claude差距的坦诚态度）+科技叙事体人设加成，达到强推荐阈值",
+      "llm_category": "事件速报",
+      "first_seen_at": "2026-04-24 13:59:34",
       "last_checked_at": ""
     },
     {
-      "note_id": "69eb27fe000000001a0350d0",
-      "title": "麻了！超肝实测DeepSeek V4来了！！！",
-      "content": "今天，等了一年的DeepSeek V4，终于发布了。 本来每天都很期待，但是发布的这一刻，突然感觉进入到了一种贤者模式",
-      "author": "数字生命卡兹克",
-      "author_id": "62c98736000000001501e075",
-      "cover_image": "https://sns-na-i2.xhscdn.com/spectrum/1040g0k031vban2ph3m005om9gsr5bo3lctu2qp8?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=a1e798bde8263be8bd9089d11e105f42&t=69eb668a&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69eb27fe000000001a0350d0?xsec_token=YBgSfU0wnHGvsYC9po4jC6TDGROj3S-JSFYOMzzaC-1EY=&xsec_source=pc_search",
-      "note_type": "normal",
+      "note_id": "69ea4385000000001f0026a8",
+      "title": "千问AI眼镜看非遗，这波文化输出超爽！",
+      "content": "用第一视角解锁非遗东方美学！#千问AI眼镜S1 #AI眼镜拍摄非遗 #米兰设计周 #中国智造 #第一视角非遗纪录片 #千",
+      "author": "薇薇安有话说",
+      "author_id": "66a10663000000002401d11f",
+      "cover_image": "https://sns-na-i6.xhscdn.com/1040g2sg31vaemujriqkg5pl10php3k8v49n7u38?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=b9d78765bf765d8b831df2d1def906f3&t=69eb771d&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ea4385000000001f0026a8?xsec_token=YBgOtepg-h48qSuPqlvo_ZLI-OAK0-Z1QM_Dsu4wYJTb8=&xsec_source=pc_search",
+      "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-24T16:21:18",
-      "likes": 1241,
-      "collects": 347,
-      "comments": 129,
-      "shares": 210,
+      "published_at": "2026-04-24T11:48:03",
+      "likes": 1764,
+      "collects": 195,
+      "comments": 4,
+      "shares": 4,
       "source_type": "keyword",
-      "source_value": "大模型",
+      "source_value": "千问",
       "source_types": [
         "keyword"
       ],
       "source_values": [
-        "大模型"
+        "千问"
       ],
       "merged_note_ids": [
-        "69eb27fe000000001a0350d0"
+        "69ea4385000000001f0026a8"
       ],
-      "first_seen_at": "2026-04-24 12:48:28",
+      "llm_score": 58,
+      "llm_topic": "千问AI眼镜、AI硬件产品、非遗文化",
+      "llm_reason": "单产品叙事+海外搬运感（米兰设计周）+文化输出情绪钩子，但信息差有限、爆款信号不足，属于值得做的选题",
+      "llm_category": "单产品/技术叙事",
+      "first_seen_at": "2026-04-24 13:59:13",
       "last_checked_at": ""
     },
     {
-      "note_id": "69ea1cc30000000023005179",
-      "title": "现在连展板都可以AI一键生成了，GPT Image2",
-      "content": "那我以前熬的夜算什么🥹 [派对R]GPT Image2上线后连夜测试效果，发现已经到了一键生成设计展板的地步了！效果令",
-      "author": "不画图的AI豆",
-      "author_id": "65edc672000000000500c406",
-      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g0k031va9t6injm005pfdopp19h06fs50kgg?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=07d102a57e3914992471103707d8b4fe&t=69eb66ca&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ea1cc30000000023005179?xsec_token=YBJQqKaZ7NqkvuougYFV4Jq0qMC0-yH3yOQhh8nuFXKk0=&xsec_source=pc_search",
+      "note_id": "69ea7006000000001b0238c8",
+      "title": "Codex要遥遥领先了",
+      "content": "GPT5.5、浏览器控制、Excel、PPT、Word、PDF、语音输入、自动审查模式、还有Latex的插件，这些功能基",
+      "author": "满眼皆是代码",
+      "author_id": "62178c4f000000002102a9b0",
+      "cover_image": "https://sns-na-i6.xhscdn.com/notes_pre_post/1040g3k831vaja0883q305ognhh7odadguvbelpg?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=197a35e1ef257d2861a9b9da99858651&t=69eb762f&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ea7006000000001b0238c8?xsec_token=YBgOtepg-h48qSuPqlvo_ZLIkjaahgLScmxwjMAjpmY2o=&xsec_source=pc_search",
       "note_type": "normal",
       "topics": [],
-      "published_at": "2026-04-23T21:21:07",
-      "likes": 1188,
-      "collects": 838,
-      "comments": 643,
-      "shares": 331,
+      "published_at": "2026-04-24T03:16:22",
+      "likes": 1147,
+      "collects": 603,
+      "comments": 196,
+      "shares": 1082,
       "source_type": "keyword",
-      "source_value": "AI设计",
+      "source_value": "人工智能",
       "source_types": [
         "keyword"
       ],
       "source_values": [
-        "AI设计"
+        "人工智能"
       ],
       "merged_note_ids": [
-        "69ea1cc30000000023005179"
+        "69ea7006000000001b0238c8"
       ],
-      "first_seen_at": "2026-04-24 12:49:17",
+      "llm_score": 58,
+      "llm_topic": "AI大模型新功能发布、GPT5.5、多应用集成",
+      "llm_reason": "事件速报品类+时效首发信息差，涉及GPT5.5等多项新功能集成，具有未来感和震撼情绪钩子，但缺少人物故事、具体价格等爆款信号加分点，正文截断影响完整评估。",
+      "llm_category": "事件速报",
+      "first_seen_at": "2026-04-24 13:55:08",
+      "last_checked_at": ""
+    },
+    {
+      "note_id": "69ead427000000001a02fc39",
+      "title": "AI眼镜最好的样子",
+      "content": "就是不打扰，却让你离美好更近#千问AI眼镜S1  #AI眼镜拍摄非遗  #米兰设计周  #中国智造  #第一视角非遗纪录",
+      "author": "吃瓜吗喽",
+      "author_id": "59c72ade44363b513d4b0e4c",
+      "cover_image": "https://sns-na-i6.xhscdn.com/1040g2sg31vaa8t7m2g7g49r3sclds3icdd6f3j8?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=567d866a7c058150cc014a226197b786&t=69eb771d&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ead427000000001a02fc39?xsec_token=YBgOtepg-h48qSuPqlvo_ZLIpqkp8bZiHOVJly6F4DDJY=&xsec_source=pc_search",
+      "note_type": "video",
+      "topics": [],
+      "published_at": "2026-04-24T14:48:42",
+      "likes": 1022,
+      "collects": 81,
+      "comments": 16,
+      "shares": 8,
+      "source_type": "keyword",
+      "source_value": "千问",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "千问"
+      ],
+      "merged_note_ids": [
+        "69ead427000000001a02fc39"
+      ],
+      "llm_score": 58,
+      "llm_topic": "千问AI眼镜S1、AI硬件新品",
+      "llm_reason": "单产品新品叙事+时效首发+未来感情绪钩子，但缺乏人物故事和反常识信号，整体选题潜力中等偏上",
+      "llm_category": "单产品/技术叙事",
+      "first_seen_at": "2026-04-24 13:59:21",
       "last_checked_at": ""
     }
   ]
