@@ -51,7 +51,7 @@ llm_cleaning:
   enabled: true
   api_key: "${OPENROUTER_API_KEY}"
   base_url: https://openrouter.ai/api/v1
-  model: openai/gpt-4o-mini
+  model: anthropic/claude-haiku-4.5
   timeout_seconds: 20
   max_content_chars: 900
   scorecard_path: docs/topic_scorecard_v1.md
