@@ -75,7 +75,12 @@ def init_tables():
                         CHECK(status IN ('candidate', 'selected', 'expired')),
         first_seen_at   TEXT NOT NULL DEFAULT (datetime('now')),
         last_checked_at TEXT,
-        check_count     INTEGER NOT NULL DEFAULT 0
+        check_count     INTEGER NOT NULL DEFAULT 0,
+        llm_checked_at  TEXT,
+        llm_should_push INTEGER,
+        llm_score       INTEGER,
+        llm_topic       TEXT,
+        llm_reason      TEXT
     );
 
     -- 3. note_checks: 每次快照
@@ -102,8 +107,20 @@ def init_tables():
         UNIQUE(note_id, channel)
     );
     """)
+    _ensure_column(conn, "notes", "llm_checked_at", "TEXT")
+    _ensure_column(conn, "notes", "llm_should_push", "INTEGER")
+    _ensure_column(conn, "notes", "llm_score", "INTEGER")
+    _ensure_column(conn, "notes", "llm_topic", "TEXT")
+    _ensure_column(conn, "notes", "llm_reason", "TEXT")
     conn.commit()
     logger.info("数据库表初始化完成")
+
+
+def _ensure_column(conn: sqlite3.Connection, table: str, column: str, definition: str):
+    """Add a column to older SQLite databases if it is missing."""
+    columns = [row["name"] for row in conn.execute(f"PRAGMA table_info({table})")]
+    if column not in columns:
+        conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {definition}")
 
 
 # ─── watch_targets CRUD ───
@@ -218,6 +235,27 @@ def promote_note(note_id: str):
     conn.execute("UPDATE notes SET status='selected' WHERE note_id=?", (note_id,))
     conn.commit()
     logger.info(f"笔记晋升为爆款: {note_id}")
+
+
+def save_llm_review(note_id: str, decision: dict):
+    """保存 LLM 语义清洗结果，便于追踪推送原因。"""
+    conn = get_conn()
+    conn.execute("""
+        UPDATE notes SET
+            llm_checked_at=datetime('now'),
+            llm_should_push=?,
+            llm_score=?,
+            llm_topic=?,
+            llm_reason=?
+        WHERE note_id=?
+    """, (
+        1 if decision.get("should_push") else 0,
+        decision.get("quality_score"),
+        decision.get("matched_topic"),
+        decision.get("reason"),
+        note_id,
+    ))
+    conn.commit()
 
 
 def expire_note(note_id: str):

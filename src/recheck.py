@@ -16,10 +16,10 @@ from src.client_factory import get_client
 from src.jzl_api import JZLAPIError
 from src.tikhub_api import TikHubAPIError
 from src.normalize import normalize_note_detail2
+from src.llm_cleaner import review_and_promote
 from src.db import (
     get_candidates,
     insert_check,
-    promote_note,
     expire_note,
     get_max_likes,
     get_conn,
@@ -71,9 +71,13 @@ def run_recheck():
             # 窗口已关闭，检查历史最高点赞
             max_likes = get_max_likes(note_id)
             if max_likes >= likes_threshold:
-                promote_note(note_id)
-                promoted += 1
-                logger.info(f"窗口关闭时晋升: {note_id} max_likes={max_likes}")
+                note_for_review = dict(note)
+                note_for_review["likes"] = max_likes
+                if review_and_promote(note_for_review, cfg):
+                    promoted += 1
+                    logger.info(f"窗口关闭时晋升: {note_id} max_likes={max_likes}")
+                else:
+                    expired += 1
             else:
                 expire_note(note_id)
                 expired += 1
@@ -120,8 +124,17 @@ def run_recheck():
 
         # 爆款判定
         if likes >= likes_threshold:
-            promote_note(note_id)
-            promoted += 1
+            note_for_review = dict(note)
+            note_for_review.update({
+                "likes": likes,
+                "collects": collects,
+                "comments": comments,
+                "shares": shares,
+            })
+            if review_and_promote(note_for_review, cfg):
+                promoted += 1
+            else:
+                expired += 1
 
         checked += 1
 

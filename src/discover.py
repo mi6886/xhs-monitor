@@ -16,12 +16,11 @@ from src.client_factory import get_client
 from src.jzl_api import JZLAPIError
 from src.tikhub_api import TikHubAPIError
 from src.normalize import normalize_search_app, normalize_user_post2
+from src.llm_cleaner import review_and_promote
 from src.db import (
     get_enabled_targets,
     upsert_note,
     insert_check,
-    promote_note,
-    get_max_likes,
 )
 
 logger = logging.getLogger(__name__)
@@ -79,7 +78,7 @@ def _process_note(note: dict, cfg: dict, raw_json: str = None):
 
     # 爆款判定: 当前点赞 >= 阈值，直接晋升
     if likes >= likes_threshold:
-        promote_note(note_id)
+        review_and_promote(note, cfg)
 
 
 def discover_by_keywords(client, cfg: dict):
