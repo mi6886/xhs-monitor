@@ -30,3 +30,4 @@ aigc
 Claudecode
 千问
 Opus 4.7
+GPT-Image-2
