@@ -80,7 +80,9 @@ def init_tables():
         llm_should_push INTEGER,
         llm_score       INTEGER,
         llm_topic       TEXT,
-        llm_reason      TEXT
+        llm_reason      TEXT,
+        llm_category    TEXT,
+        llm_detail      TEXT
     );
 
     -- 3. note_checks: 每次快照
@@ -112,6 +114,8 @@ def init_tables():
     _ensure_column(conn, "notes", "llm_score", "INTEGER")
     _ensure_column(conn, "notes", "llm_topic", "TEXT")
     _ensure_column(conn, "notes", "llm_reason", "TEXT")
+    _ensure_column(conn, "notes", "llm_category", "TEXT")
+    _ensure_column(conn, "notes", "llm_detail", "TEXT")
     conn.commit()
     logger.info("数据库表初始化完成")
 
@@ -246,13 +250,17 @@ def save_llm_review(note_id: str, decision: dict):
             llm_should_push=?,
             llm_score=?,
             llm_topic=?,
-            llm_reason=?
+            llm_reason=?,
+            llm_category=?,
+            llm_detail=?
         WHERE note_id=?
     """, (
         1 if decision.get("should_push") else 0,
         decision.get("quality_score"),
         decision.get("matched_topic"),
         decision.get("reason"),
+        decision.get("category"),
+        json.dumps(decision, ensure_ascii=False),
         note_id,
     ))
     conn.commit()

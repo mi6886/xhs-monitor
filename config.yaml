@@ -49,11 +49,14 @@ rules:
 # 基础字段清洗仍由程序处理；LLM 只审核已过点赞门槛的候选笔记是否值得推送。
 llm_cleaning:
   enabled: true
-  api_key: "${OPENAI_API_KEY}"
-  base_url: https://api.openai.com/v1
-  model: gpt-4o-mini
+  api_key: "${OPENROUTER_API_KEY}"
+  base_url: https://openrouter.ai/api/v1
+  model: openai/gpt-4o-mini
   timeout_seconds: 20
   max_content_chars: 900
+  scorecard_path: docs/topic_scorecard_v1.md
+  push_score_threshold: 35
+  strong_score_threshold: 50
   fail_open: true                     # LLM 临时不可用时保留原有点赞阈值逻辑，避免漏推
 
 # --- 发现任务 ---

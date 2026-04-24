@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+from pathlib import Path
 from typing import Any
 
 import requests
@@ -28,12 +29,28 @@ def _trim(text: Any, max_chars: int) -> str:
     return value[:max_chars]
 
 
+def _repo_root() -> Path:
+    return Path(__file__).resolve().parents[1]
+
+
+def _load_scorecard(llm_cfg: dict) -> str:
+    scorecard_path = llm_cfg.get("scorecard_path") or "docs/topic_scorecard_v1.md"
+    path = _repo_root() / scorecard_path
+    try:
+        return path.read_text(encoding="utf-8")
+    except OSError as exc:
+        logger.warning("无法读取选题打分卡: %s", exc)
+        return ""
+
+
 def _fallback_decision(reason: str, should_push: bool = True) -> dict:
     return {
         "is_relevant": should_push,
         "should_push": should_push,
         "matched_topic": "未进行 LLM 审核",
-        "quality_score": 6 if should_push else 0,
+        "category": "未分类",
+        "quality_score": 60 if should_push else 0,
+        "score_breakdown": {},
         "reason": reason,
     }
 
@@ -47,13 +64,16 @@ def review_note(note: dict, cfg: dict) -> dict:
     api_key = llm_cfg.get("api_key", "")
     fail_open = bool(llm_cfg.get("fail_open", True))
     if not api_key:
-        logger.warning("OPENAI_API_KEY 未配置，跳过 LLM 语义清洗")
+        logger.warning("LLM API key 未配置，跳过 LLM 语义清洗")
         return _fallback_decision(
-            "OPENAI_API_KEY 未配置，按点赞阈值通过" if fail_open else "OPENAI_API_KEY 未配置",
+            "LLM API key 未配置，按点赞阈值通过" if fail_open else "LLM API key 未配置",
             should_push=fail_open,
         )
 
     max_content_chars = int(llm_cfg.get("max_content_chars", 900))
+    scorecard = _load_scorecard(llm_cfg)
+    push_score_threshold = int(llm_cfg.get("push_score_threshold", 35))
+    strong_score_threshold = int(llm_cfg.get("strong_score_threshold", 50))
     payload = {
         "model": llm_cfg.get("model") or "gpt-4o-mini",
         "temperature": 0,
@@ -62,25 +82,34 @@ def review_note(note: dict, cfg: dict) -> dict:
             {
                 "role": "system",
                 "content": (
-                    "你是小红书爆款笔记监控系统的语义清洗器。"
-                    "只判断一条已经满足时间和点赞门槛的笔记是否值得推送。"
-                    "请过滤广告、抽奖、纯带货、低信息量、与监控来源明显无关的内容。"
-                    "必须只返回 JSON。"
+                    "你是小红书爆款笔记监控系统的选题评估器。"
+                    "基础字段、时间、点赞数、链接已经由程序处理，你只做语义清洗和选题潜力评分。"
+                    "请严格依据给定《选题评估打分卡 v1》给 0-100 分，并过滤广告、抽奖、纯带货、低信息量、"
+                    "与监控来源明显无关的内容。必须只返回 JSON。"
                 ),
             },
             {
                 "role": "user",
                 "content": json.dumps({
+                    "选题评估打分卡": scorecard,
                     "要求": {
-                        "返回字段": [
-                            "is_relevant",
-                            "should_push",
-                            "matched_topic",
-                            "quality_score",
-                            "reason",
-                        ],
-                        "quality_score": "0 到 10 的整数",
-                        "should_push": "只有内容和监控来源相关且有信息价值时才为 true",
+                        "输出 JSON 字段": {
+                            "is_relevant": "布尔值，是否和监控来源相关",
+                            "should_push": "布尔值，是否值得推送给用户",
+                            "matched_topic": "命中的主题或关键词",
+                            "category": "A栏选题品类",
+                            "quality_score": "0 到 100 的整数总分",
+                            "score_breakdown": {
+                                "category_score": "A 选题品类分",
+                                "information_gap_score": "B 信息差分",
+                                "viral_signal_score": "C 爆款信号分",
+                                "audience_emotion_adjustment": "D 受众与情绪修正",
+                                "accessibility_bonus": "E 可触达感修正",
+                                "persona_bonus": "人设匹配加成",
+                            },
+                            "reason": "用一句话解释通过或拒绝原因",
+                        },
+                        "推送阈值": f"相关且总分 >= {push_score_threshold} 才 should_push=true；>= {strong_score_threshold} 视为强推荐",
                     },
                     "笔记": {
                         "标题": note.get("title") or "",
@@ -107,6 +136,8 @@ def review_note(note: dict, cfg: dict) -> dict:
             headers={
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
+                "HTTP-Referer": "https://github.com/mi6886/xhs-monitor",
+                "X-Title": "xhs-monitor",
             },
             json=payload,
             timeout=timeout,
@@ -124,15 +155,18 @@ def review_note(note: dict, cfg: dict) -> dict:
     should_push = bool(decision.get("should_push"))
     quality_score = decision.get("quality_score", 0)
     try:
-        quality_score = max(0, min(10, int(quality_score)))
+        quality_score = max(0, min(100, int(quality_score)))
     except (TypeError, ValueError):
         quality_score = 0
+    should_push = should_push and quality_score >= push_score_threshold
 
     return {
         "is_relevant": bool(decision.get("is_relevant", should_push)),
         "should_push": should_push,
         "matched_topic": str(decision.get("matched_topic") or "未知")[:80],
+        "category": str(decision.get("category") or "未分类")[:80],
         "quality_score": quality_score,
+        "score_breakdown": decision.get("score_breakdown") if isinstance(decision.get("score_breakdown"), dict) else {},
         "reason": str(decision.get("reason") or "无理由")[:240],
     }
 
