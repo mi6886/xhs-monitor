@@ -4,14 +4,189 @@
   "date": "2026-04-24",
   "period": "evening",
   "period_label": "Evening",
-  "generated_at": "2026-04-24T20:39:04.960747+08:00",
-  "delivery_status": "empty",
-  "count": 0,
+  "generated_at": "2026-04-24T20:56:56.963495+08:00",
+  "delivery_status": "success",
+  "count": 6,
   "stats": {
-    "total": 3528,
-    "candidate": 157,
-    "selected": 126,
-    "expired": 3245
+    "total": 4057,
+    "candidate": 666,
+    "selected": 132,
+    "expired": 3259
   },
-  "notes": []
+  "notes": [
+    {
+      "note_id": "69ea1d570000000019025c05",
+      "title": "蛇院女生的霍格沃茨浪漫舞会（已屏蔽麻瓜）",
+      "content": "#ai  #AIGC  #哈利波特  #斯莱特林  #霍格沃茨  #蛇院  #格兰芬多  #赫奇帕奇  #哈迷聚集地",
+      "author": "JEN的很AI",
+      "author_id": "65254aaa000000002a02b763",
+      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g34o31vaa3n78hu1g5p959alaldr3c7hsd90?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=bef9d3893bff761ce5073cec6d4a952b&t=69eb66ea&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ea1d570000000019025c05?xsec_token=YBJQqKaZ7NqkvuougYFV4Jq4VbTHMeoA-GrJ-o4MfVeGA=&xsec_source=pc_search",
+      "note_type": "video",
+      "topics": [],
+      "published_at": "2026-04-23T21:23:35",
+      "likes": 11500,
+      "collects": 1370,
+      "comments": 209,
+      "shares": 555,
+      "source_type": "keyword",
+      "source_value": "aigc",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "aigc"
+      ],
+      "merged_note_ids": [
+        "69ea1d570000000019025c05"
+      ],
+      "first_seen_at": "2026-04-24 12:49:49",
+      "last_checked_at": ""
+    },
+    {
+      "note_id": "69ea17f80000000011020004",
+      "title": "保姆级教程！彻底搞懂Claude Code Skill！",
+      "content": "本期视频我将手把手教大家在Claude Code中安装和使用Skill,内容包括：Skill是什么、怎样安装和创建Ski",
+      "author": "我是阿众",
+      "author_id": "5c55880f0000000012004d14",
+      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g34o31va9gkpb2s105n2lh07kgj8k0ghjukg?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=4c0899fa9c8af241f2ab43ea7917ca75&t=69eb6679&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ea17f80000000011020004?xsec_token=YBJQqKaZ7NqkvuougYFV4Jq1DX-su8NG_x8s64MFb-3KE=&xsec_source=pc_search",
+      "note_type": "video",
+      "topics": [],
+      "published_at": "2026-04-23T21:00:40",
+      "likes": 2794,
+      "collects": 5581,
+      "comments": 46,
+      "shares": 485,
+      "source_type": "keyword",
+      "source_value": "Claudecode",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "Claudecode"
+      ],
+      "merged_note_ids": [
+        "69ea17f80000000011020004"
+      ],
+      "first_seen_at": "2026-04-23 14:08:05",
+      "last_checked_at": "2026-04-24 12:50:00"
+    },
+    {
+      "note_id": "69ead8ec0000000020000805",
+      "title": "《罗福莉的首次访谈：AI范式已然巨变！》完整版",
+      "content": "2026年，大模型战争全面升级，掀开了第二幕——从Pre-train（预训练）主导的Chat时代，转向Post-trai",
+      "author": "张小珺",
+      "author_id": "5fede947000000000100603e",
+      "cover_image": "https://sns-na-i2.xhscdn.com/spectrum/1040g0k031vahcrnh1m005nvdt53g8o1uro79gbg?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4/codec/66&ap=5&sc=SRH_PRV&sign=75ee5048b13cfffa8d310b8f8a0011d3&t=69eb666d&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ead8ec0000000020000805?xsec_token=YBwgeUen5aWG-pBOSJ8b4Dc-O98yhF_Vooqu5LyZArQAs=&xsec_source=pc_search",
+      "note_type": "video",
+      "topics": [],
+      "published_at": "2026-04-24T12:02:41",
+      "likes": 1538,
+      "collects": 1393,
+      "comments": 99,
+      "shares": 555,
+      "source_type": "keyword",
+      "source_value": "openclaw",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "openclaw"
+      ],
+      "merged_note_ids": [
+        "69ead8ec0000000020000805"
+      ],
+      "first_seen_at": "2026-04-24 12:45:43",
+      "last_checked_at": "2026-04-24 12:50:30"
+    },
+    {
+      "note_id": "69ea93d7000000000f03ac00",
+      "title": "OpenAI GPT-5.5 重回 AI 领域毫无争议第一",
+      "content": "OpenAI 新模型以 3 分优势登顶 Artificial Analysis Intelligence Index，打",
+      "author": "Artificial Analysis",
+      "author_id": "69ea6345000000000d034c02",
+      "cover_image": "https://sns-na-i6.xhscdn.com/oss-sg/notes_pre_post/1040g3mo31vatfvngni005qfacd2jej021su5udo?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=5b38c8d1a29e73f695962a01008e89dc&t=69eb670a&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ea93d7000000000f03ac00?xsec_token=YBKYJ5vOicwnT3ds5ZF_0BVRLzj7mRywi45NjMwqt-ZuI=&xsec_source=pc_search",
+      "note_type": "normal",
+      "topics": [],
+      "published_at": "2026-04-24T05:49:11",
+      "likes": 1528,
+      "collects": 351,
+      "comments": 262,
+      "shares": 597,
+      "source_type": "keyword",
+      "source_value": "Opus 4.7",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "Opus 4.7"
+      ],
+      "merged_note_ids": [
+        "69ea93d7000000000f03ac00"
+      ],
+      "first_seen_at": "2026-04-24 12:50:21",
+      "last_checked_at": ""
+    },
+    {
+      "note_id": "69eb27fe000000001a0350d0",
+      "title": "麻了！超肝实测DeepSeek V4来了！！！",
+      "content": "今天，等了一年的DeepSeek V4，终于发布了。 本来每天都很期待，但是发布的这一刻，突然感觉进入到了一种贤者模式",
+      "author": "数字生命卡兹克",
+      "author_id": "62c98736000000001501e075",
+      "cover_image": "https://sns-na-i2.xhscdn.com/spectrum/1040g0k031vban2ph3m005om9gsr5bo3lctu2qp8?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=a1e798bde8263be8bd9089d11e105f42&t=69eb668a&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69eb27fe000000001a0350d0?xsec_token=YBgSfU0wnHGvsYC9po4jC6TDGROj3S-JSFYOMzzaC-1EY=&xsec_source=pc_search",
+      "note_type": "normal",
+      "topics": [],
+      "published_at": "2026-04-24T16:21:18",
+      "likes": 1241,
+      "collects": 347,
+      "comments": 129,
+      "shares": 210,
+      "source_type": "keyword",
+      "source_value": "大模型",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "大模型"
+      ],
+      "merged_note_ids": [
+        "69eb27fe000000001a0350d0"
+      ],
+      "first_seen_at": "2026-04-24 12:48:28",
+      "last_checked_at": ""
+    },
+    {
+      "note_id": "69ea1cc30000000023005179",
+      "title": "现在连展板都可以AI一键生成了，GPT Image2",
+      "content": "那我以前熬的夜算什么🥹 [派对R]GPT Image2上线后连夜测试效果，发现已经到了一键生成设计展板的地步了！效果令",
+      "author": "不画图的AI豆",
+      "author_id": "65edc672000000000500c406",
+      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g0k031va9t6injm005pfdopp19h06fs50kgg?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=07d102a57e3914992471103707d8b4fe&t=69eb66ca&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ea1cc30000000023005179?xsec_token=YBJQqKaZ7NqkvuougYFV4Jq0qMC0-yH3yOQhh8nuFXKk0=&xsec_source=pc_search",
+      "note_type": "normal",
+      "topics": [],
+      "published_at": "2026-04-23T21:21:07",
+      "likes": 1188,
+      "collects": 838,
+      "comments": 643,
+      "shares": 331,
+      "source_type": "keyword",
+      "source_value": "AI设计",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "AI设计"
+      ],
+      "merged_note_ids": [
+        "69ea1cc30000000023005179"
+      ],
+      "first_seen_at": "2026-04-24 12:49:17",
+      "last_checked_at": ""
+    }
+  ]
 }
