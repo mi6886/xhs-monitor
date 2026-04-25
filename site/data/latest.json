@@ -1,17 +1,84 @@
 {
   "source": "xhs",
   "title": "小红书爆款笔记",
-  "date": "2026-04-25",
-  "period": "evening",
-  "period_label": "Evening",
-  "generated_at": "2026-04-25T21:29:02.912999+08:00",
-  "delivery_status": "empty",
-  "count": 0,
+  "date": "2026-04-26",
+  "period": "morning",
+  "period_label": "Morning",
+  "generated_at": "2026-04-26T07:57:00.384385+08:00",
+  "delivery_status": "success",
+  "count": 2,
   "stats": {
-    "total": 4692,
-    "candidate": 322,
-    "selected": 144,
-    "expired": 4226
+    "total": 4694,
+    "candidate": 55,
+    "selected": 146,
+    "expired": 4493
   },
-  "notes": []
+  "notes": [
+    {
+      "note_id": "69ec4cd8000000001f007f69",
+      "title": "我把这4个AI拉进群，看他们能不能打起来...",
+      "content": "我把4个AI拉到一个群里，想看看他们会不会打起来… 结果并没有[doge] 但聊着聊着，发现他们好像不是工具，更像四种不",
+      "author": "阿葱产品日记",
+      "author_id": "57556fe682ec393ec540c6bc",
+      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g0k031vce4rpq1u0048ej7rnudhlsoq167p0?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=d7480893e33e844e096ddc0292d53e82&t=69ecbfa2&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ec4cd8000000001f007f69?xsec_token=YBGgLmBLdqDj0ZRenCDdMHo18H-kwv3DgHORoQvVO4H4w=&xsec_source=pc_search",
+      "note_type": "video",
+      "topics": [],
+      "published_at": "2026-04-25T18:11:07",
+      "likes": 2262,
+      "collects": 407,
+      "comments": 14,
+      "shares": 44,
+      "source_type": "keyword",
+      "source_value": "ai工具",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "ai工具"
+      ],
+      "merged_note_ids": [
+        "69ec4cd8000000001f007f69"
+      ],
+      "llm_score": 52,
+      "llm_topic": "AI工具对比、AI产品体验",
+      "llm_reason": "创意对比选题+反常识信号+好奇心钩子，虽信息差一般但执行新颖，达到推荐线",
+      "llm_category": "AI/设计小技巧演示",
+      "first_seen_at": "2026-04-25 13:20:43",
+      "last_checked_at": "2026-04-25 23:54:18"
+    },
+    {
+      "note_id": "69ec5f5300000000350222b6",
+      "title": "🔥冷门宝藏｜360°漫游世界古建筑！",
+      "content": "#网站推荐[话题]# #设计干货[话题]# #这个网站真好用[话题]# #vibecoding[话题]# #建筑设计[话题]# #历史文化[话题]# #古建筑[话题]# #世界文化遗产[话题]# #学",
+      "author": "宅急颂AI",
+      "author_id": "",
+      "cover_image": "http://sns-na-i6.xhscdn.com/1040g00831vcgqdq5hu005pmpeql7cf9r4srl3n0?imageView2/2/w/576/format/webp/q/87|imageMogr2/strip&redImage/frame/0&ap=12&sc=USR_PRV&sign=397fe324eee99a6efb203f4299ae0a32&t=69ed53a9&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ec5f5300000000350222b6",
+      "note_type": "video",
+      "topics": [],
+      "published_at": "2026-04-25T14:29:39",
+      "likes": 1324,
+      "collects": 2398,
+      "comments": 10,
+      "shares": 0,
+      "source_type": "account",
+      "source_value": "宅急颂AI",
+      "source_types": [
+        "account"
+      ],
+      "source_values": [
+        "宅急颂AI"
+      ],
+      "merged_note_ids": [
+        "69ec5f5300000000350222b6"
+      ],
+      "llm_score": 48,
+      "llm_topic": "网站推荐、建筑设计资源、古建筑漫游工具",
+      "llm_reason": "资源分享类选题，具有可触达感和好奇心钩子，但信息差有限、缺乏明确人物故事或时效性，处于值得做的边界线上",
+      "llm_category": "资源分享",
+      "first_seen_at": "2026-04-25 07:45:12",
+      "last_checked_at": "2026-04-25 23:52:12"
+    }
+  ]
 }
