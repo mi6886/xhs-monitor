@@ -2,149 +2,83 @@
   "source": "xhs",
   "title": "小红书爆款笔记",
   "date": "2026-04-26",
-  "period": "afternoon",
-  "period_label": "Afternoon",
-  "generated_at": "2026-04-26T16:01:46.282484+08:00",
+  "period": "evening",
+  "period_label": "Evening",
+  "generated_at": "2026-04-26T21:32:18.472838+08:00",
   "delivery_status": "success",
-  "count": 4,
+  "count": 2,
   "stats": {
-    "total": 5236,
-    "candidate": 533,
-    "selected": 150,
-    "expired": 4553
+    "total": 5637,
+    "candidate": 914,
+    "selected": 153,
+    "expired": 4570
   },
   "notes": [
     {
-      "note_id": "69ec93370000000023014c07",
-      "title": "印度失业小哥彻底破解谷歌水印",
-      "content": "#人工智能  #谷歌  #Gemini  #AI人工智能  #水印破解  #程序员  #奇闻趣事",
-      "author": "AI创意研习社",
-      "author_id": "662f8f9d0000000003030efd",
-      "cover_image": "https://sns-na-i4.xhscdn.com/1040g2sg31vcn0lfn2i705phfhuegu3ntd3uo9ko?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4/codec/66&ap=5&sc=SRH_PRV&sign=471df7459710e3676966298315792163&t=69edc404&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ec93370000000023014c07?xsec_token=YBjhIM4tCJPSln2uUg14SWF5pQdOeqLs6vBHEO59iUpVc=&xsec_source=pc_search",
+      "note_id": "69ed79ee000000001f004c3a",
+      "title": "爆火的image2在科研领域到底能不能打？",
+      "content": "一下午实测了三个方向:绘制答辩用的PPT图片，技术路线图，还有投稿用的摘要插图。先说结论，不仅有两把刷子，而且刷子有毛",
+      "author": "任意常数大于零",
+      "author_id": "640012ba00000000290117bf",
+      "cover_image": "https://sns-na-i1.xhscdn.com/1040g2sg31vdj97u92g705p002ataa5tvoi5ceig?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=65a8d4a12cb16bcd5fb9fb35c22bd2cd&t=69ee125a&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ed79ee000000001f004c3a?xsec_token=YBKAEfvNI2YeeSbRhbLsZ997-1iHhAcrzzDe8i07dMh1o=&xsec_source=pc_search",
       "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-25T18:11:03",
-      "likes": 4882,
-      "collects": 1229,
-      "comments": 101,
-      "shares": 748,
+      "published_at": "2026-04-26T10:35:26",
+      "likes": 7273,
+      "collects": 7274,
+      "comments": 148,
+      "shares": 1388,
       "source_type": "keyword",
-      "source_value": "人工智能",
+      "source_value": "GPT-Image-2",
       "source_types": [
         "keyword"
       ],
       "source_values": [
-        "人工智能"
+        "GPT-Image-2"
       ],
       "merged_note_ids": [
-        "69ec93370000000023014c07"
-      ],
-      "llm_score": 58,
-      "llm_topic": "谷歌 AI 水印破解技术",
-      "llm_reason": "单产品技术叙事+人物故事+反常识（破解水印）+科技叙事人设加成，信息差为海外搬运级别，情绪钩子为好奇/趣味，综合达到推荐线。",
-      "llm_category": "单产品/技术叙事",
-      "first_seen_at": "2026-04-26 07:51:35",
-      "last_checked_at": "2026-04-26 07:52:26"
-    },
-    {
-      "note_id": "69ed15e2000000002202793f",
-      "title": "这年头，连台灯都可以给你叠衣服了",
-      "content": "斯坦福机器人博士发布可以自主叠衣服的台灯机器人 #小红书科技AMA  #人工智能  #科技热点  #前沿技术  #机器人",
-      "author": "赛文乔伊",
-      "author_id": "5c2d79f4000000000503e40e",
-      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g34o31vd73p7kka0g5n1df7q1fp0e8fi17i8?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=e63abd8af8c84c55ea95e3f778ae0ddd&t=69edc3ed&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ed15e2000000002202793f?xsec_token=YBE61G55ttr_js72B2IctDF8kcbwYbeC-261C6G5o_KaA=&xsec_source=pc_search",
-      "note_type": "video",
-      "topics": [],
-      "published_at": "2026-04-26T07:30:20",
-      "likes": 2079,
-      "collects": 736,
-      "comments": 217,
-      "shares": 0,
-      "source_type": "account",
-      "source_value": "赛文乔伊",
-      "source_types": [
-        "account"
-      ],
-      "source_values": [
-        "赛文乔伊"
-      ],
-      "merged_note_ids": [
-        "69ed15e2000000002202793f"
+        "69ed79ee000000001f004c3a"
       ],
       "llm_score": 68,
-      "llm_topic": "机器人技术、AI硬件、前沿科技产品",
-      "llm_reason": "斯坦福博士新产品+时效首发+反常识（台灯叠衣服）+科技叙事人设匹配，选题结构强，但缺乏具体价格和人物故事细节，信息量可进一步深化。",
+      "llm_topic": "GPT-Image-2 在科研领域的实测应用",
+      "llm_reason": "单产品新技术叙事+时效首发+具体应用场景演示（PPT、技术路线图、摘要插图）+反常识信号（'不仅有两把刷子，而且刷子有毛'的意外性表述），受众为科研工作者，情绪为好奇/实用，已获7273赞说明选题本身有市场，但正文信息量偏少，缺少具体数据对比或人物故事加成。",
       "llm_category": "单产品/技术叙事",
-      "first_seen_at": "2026-04-25 23:52:21",
-      "last_checked_at": "2026-04-26 07:56:33"
+      "first_seen_at": "2026-04-26 13:25:49",
+      "last_checked_at": ""
     },
     {
-      "note_id": "69ec84ee000000003701f354",
-      "title": "🤯如何让GPT Image2直出整套竞赛风展板",
-      "content": "上一条笔记好多宝子私信问我 怎么快速生成整套竞赛风格展板 问的人实在太多啦！ 这一期专门拍了视频详细解答 手把手教大家搞",
-      "author": "北乔学长",
-      "author_id": "5e4e610d0000000001004b1c",
-      "cover_image": "https://sns-na-i6.xhscdn.com/1040g00831vclab4piq005niec46g8iosg034v98?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=6dd17988f49c731df9dc277dc6023c9e&t=69edc4ca&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ec84ee000000003701f354?xsec_token=YB2zcz14F5bQ6LUPS9C6Lv5F3ZCU6c1iJU9qlR5W5QPfw=&xsec_source=pc_search",
+      "note_id": "69ec6922000000003502a649",
+      "title": "学习工具分享📚给大家介绍我的AI“导师”们",
+      "content": "如果哪天我能顺利毕业… 那一定有这些AI工具的功劳！ 分享一些我觉得好用的AI 以及适合用它们来做什么任务 #学习分享",
+      "author": "小鱼同学UAU",
+      "author_id": "5a94e67de8ac2b2bed6a6729",
+      "cover_image": "https://sns-na-i2.xhscdn.com/1040g00831vchrvi33m004a2s1mj7qpp9o6ehk50?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=34cc1f43ea235b21ae23709cee39a0c9&t=69ee115a&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ec6922000000003502a649?xsec_token=YBdR-kTkh14qAA17tb2N7HCSCZXDHALASGytY-DMBCwbk=&xsec_source=pc_search",
       "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-25T17:10:06",
-      "likes": 1456,
-      "collects": 1283,
-      "comments": 163,
-      "shares": 187,
+      "published_at": "2026-04-26T18:02:02",
+      "likes": 2608,
+      "collects": 1799,
+      "comments": 30,
+      "shares": 111,
       "source_type": "keyword",
-      "source_value": "AI设计",
+      "source_value": "小红书科技AMA",
       "source_types": [
         "keyword"
       ],
       "source_values": [
-        "AI设计"
+        "小红书科技AMA"
       ],
       "merged_note_ids": [
-        "69ec84ee000000003701f354"
+        "69ec6922000000003502a649"
       ],
       "llm_score": 52,
-      "llm_topic": "GPT Image2 AI出图工具应用",
-      "llm_reason": "AI设计工具实操演示，有明确的问题解决场景（竞赛展板生成），用户需求驱动（多人私信询问），具备好奇心和实用情绪钩子，但信息差有限、缺乏首发性和人物故事。",
-      "llm_category": "AI/设计小技巧演示",
-      "first_seen_at": "2026-04-26 07:54:53",
-      "last_checked_at": "2026-04-26 07:55:46"
-    },
-    {
-      "note_id": "69eceae20000000035030d66",
-      "title": "我都以为在画饼！存算一体芯片竟然真成了？",
-      "content": "安克竟然做芯片了！而且是做了一颗违背了所有祖训的“存算一体”芯片。他们是怎么想的？听听他们创始人兼CEO怎么说…… #芯",
-      "author": "老石谈芯",
-      "author_id": "5f85793100000000010085a3",
-      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g0k031vd2ll443m005ns5f4og91d39fnsdk0?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4/codec/66&ap=5&sc=SRH_PRV&sign=979188608768cf06d5c460254411c14f&t=69edc404&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69eceae20000000035030d66?xsec_token=YBjhIM4tCJPSln2uUg14SWF2ZC2v6l36uR8FQW0V-Svi8=&xsec_source=pc_search",
-      "note_type": "video",
-      "topics": [],
-      "published_at": "2026-04-26T07:30:19",
-      "likes": 1362,
-      "collects": 543,
-      "comments": 229,
-      "shares": 428,
-      "source_type": "keyword",
-      "source_value": "人工智能",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "人工智能"
-      ],
-      "merged_note_ids": [
-        "69eceae20000000035030d66"
-      ],
-      "llm_score": 68,
-      "llm_topic": "AI芯片、存算一体芯片、安克科技新产品",
-      "llm_reason": "单产品技术叙事+时效首发+创始人故事+反常识（安克做芯片）+科技叙事人设匹配，选题结构强，已有1362赞基础验证，值得推送",
-      "llm_category": "单产品/技术叙事",
-      "first_seen_at": "2026-04-26 07:51:48",
-      "last_checked_at": ""
+      "llm_topic": "AI工具分享、学习效率",
+      "llm_reason": "多工具合集品类+学习场景情绪钩子+有可触达感，虽信息差一般但选题结构合理，达到推荐阈值",
+      "llm_category": "多工具/资源合集",
+      "first_seen_at": "2026-04-26 13:21:38",
+      "last_checked_at": "2026-04-26 13:22:35"
     }
   ]
 }
