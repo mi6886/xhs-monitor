@@ -2,66 +2,99 @@
   "source": "xhs",
   "title": "小红书爆款笔记",
   "date": "2026-04-27",
-  "period": "morning",
-  "period_label": "Morning",
-  "generated_at": "2026-04-27T08:02:38.547408+08:00",
+  "period": "afternoon",
+  "period_label": "Afternoon",
+  "generated_at": "2026-04-27T16:49:18.710235+08:00",
   "delivery_status": "success",
-  "count": 4,
+  "count": 3,
   "stats": {
-    "total": 5972,
-    "candidate": 706,
-    "selected": 157,
-    "expired": 5109
+    "total": 6302,
+    "candidate": 648,
+    "selected": 160,
+    "expired": 5494
   },
   "notes": [
     {
-      "note_id": "69edae30000000003502e33c",
-      "title": "🔥小众宝藏｜自定义高级地图海报！",
-      "content": "#网站推荐[话题]# #AI工具[话题]# #地图[话题]# #世界潮流地图[话题]# #设计干货[话题]# #vibecoding[话题]# #海报设计[话题]# #创意海报[话题]# #设计灵感[",
-      "author": "宅急颂AI",
-      "author_id": "",
-      "cover_image": "http://sns-na-i4.xhscdn.com/1040g2sg31vdpmmugjme05pmpeql7cf9rop2keg8?imageView2/2/w/576/format/webp/q/87|imageMogr2/strip&redImage/frame/0&ap=12&sc=USR_PRV&sign=fda2151030a4fe6a584dae562c3c13a9&t=69eea66f&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69edae30000000003502e33c",
+      "note_id": "69ee7f96000000003601ba6e",
+      "title": "ai直接把我公寓租出去了 把我家具也卖了",
+      "content": "#ai工具  #蒙特利尔租房  #hermesagent  #养龙虾  #蒙特利尔生活  #ai智能体  #ai自动化",
+      "author": "L（已有闺闺）",
+      "author_id": "61a2fa75000000001000bdad",
+      "cover_image": "https://sns-na-i4.xhscdn.com/1040g00831vej714n2q005od2v9qk1fdd0a6lk70?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=8216c6b2b3be7904dae01eb70e80045b&t=69ef212b&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ee7f96000000003601ba6e?xsec_token=YBIyNYaZqOdY8ZwmzD62lNRAiNaRRamCaIQ3sMoKCBr8w=&xsec_source=pc_search",
       "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-26T14:18:24",
-      "likes": 2691,
-      "collects": 5525,
-      "comments": 16,
-      "shares": 0,
-      "source_type": "account",
-      "source_value": "宅急颂AI",
+      "published_at": "2026-04-27T05:11:50",
+      "likes": 3100,
+      "collects": 2002,
+      "comments": 218,
+      "shares": 2101,
+      "source_type": "keyword",
+      "source_value": "ai工具",
       "source_types": [
-        "account"
+        "keyword"
       ],
       "source_values": [
-        "宅急颂AI"
+        "ai工具"
       ],
       "merged_note_ids": [
-        "69edae30000000003502e33c"
+        "69ee7f96000000003601ba6e"
       ],
-      "llm_score": 52,
-      "llm_topic": "AI工具推荐、地图海报设计、自定义工具",
-      "llm_reason": "资源合集类选题，具有设计干货属性和创意海报情绪钩子，收藏数高（5525）表明可触达感强，但信息差一般，总分52分达到强推荐阈值。",
-      "llm_category": "多工具/资源合集",
-      "first_seen_at": "2026-04-26 07:56:29",
-      "last_checked_at": "2026-04-26 23:57:38"
+      "llm_score": 58,
+      "llm_topic": "AI智能体自动化应用、反常识故事",
+      "llm_reason": "反常识+人物故事+AI智能体应用的组合，标题制造悬念和趣味感，命中监控关键词，互动数据良好（3.1k赞），但信息差一般、品类受众较窄，属于值得做的选题。",
+      "llm_category": "AI+行业应用",
+      "first_seen_at": "2026-04-27 08:41:29",
+      "last_checked_at": "2026-04-27 08:43:52"
     },
     {
-      "note_id": "69edca56000000003601f40b",
-      "title": "🤯GPT Image2能做psd图层源文件了！附提示词",
-      "content": "GPT Image 2 能直接生成分层 PSD 文件了！！不用抠图改图，设计效率大幅提升！！ #gptimage2 #A",
-      "author": "北乔学长",
-      "author_id": "5e4e610d0000000001004b1c",
-      "cover_image": "https://sns-na-i4.xhscdn.com/1040g2sg31vdt06a02i005niec46g8iosdvacr8g?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=6c716a102a2ff17119f316e6710255be&t=69eea630&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69edca56000000003601f40b?xsec_token=YBsi-advU0WfbSdChPgriIiibwXxEvxPa1j8si6L_R6EY=&xsec_source=pc_search",
+      "note_id": "69ee1485000000000f03ac00",
+      "title": "AI时代的第一场阶级斗争已经打响：26岁中",
+      "content": "主角是Koki Xu。26岁。北京AI产品经理。2026年4月4日她花了一个小时写了一段代码发到GitHub。第二天这段",
+      "author": "项目二十四号",
+      "author_id": "62331928000000001000ff57",
+      "cover_image": "https://sns-na-i1.xhscdn.com/oss-sg/notes_pre_post/1040g3mo31ve642v87k005ohj34k41vqncbdvlho?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=688d46e4d2203d5e1257ab6512e00233&t=69ef218a&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ee1485000000000f03ac00?xsec_token=YBOMqiCxx-bFr0BMnAfnFLdn3ZdNGI2YiFoDW04Lx6iNU=&xsec_source=pc_search",
+      "note_type": "normal",
+      "topics": [],
+      "published_at": "2026-04-26T21:35:01",
+      "likes": 2814,
+      "collects": 1947,
+      "comments": 358,
+      "shares": 1511,
+      "source_type": "keyword",
+      "source_value": "agent",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "agent"
+      ],
+      "merged_note_ids": [
+        "69ee1485000000000f03ac00"
+      ],
+      "llm_score": 58,
+      "llm_topic": "AI产品经理、GitHub开源项目、AI Agent相关",
+      "llm_reason": "事件速报品类+时效首发（具体日期、GitHub发布）+人物故事（26岁产品经理主角）+反常识感（\"阶级斗争\"标题制造张力），但正文信息不完整导致信息差评分保守，整体达到强推荐线",
+      "llm_category": "事件速报",
+      "first_seen_at": "2026-04-27 08:42:53",
+      "last_checked_at": ""
+    },
+    {
+      "note_id": "69ee38b0000000001f006d1f",
+      "title": "搞定！image2输出PPT可编辑图，这下真无敌了",
+      "content": "各位科研er结合上期视频一起看，直观感受下GPT最新一代生图模型在科研领域的妙用吧。#gptimage2  #AI工具",
+      "author": "任意常数大于零",
+      "author_id": "640012ba00000000290117bf",
+      "cover_image": "https://sns-na-i1.xhscdn.com/1040g00831veaa0023q005p002ataa5tven2cpi0?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=5c6be9ad07ea63faef77d4165a535cc8&t=69ef223f&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ee38b0000000001f006d1f?xsec_token=YBOMqiCxx-bFr0BMnAfnFLdhZPQsc7ygVJ_B4XWv8OgBg=&xsec_source=pc_search",
       "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-26T16:18:30",
-      "likes": 2020,
-      "collects": 2236,
-      "comments": 179,
-      "shares": 504,
+      "published_at": "2026-04-27T11:30:33",
+      "likes": 1061,
+      "collects": 1677,
+      "comments": 18,
+      "shares": 297,
       "source_type": "keyword",
       "source_value": "GPT-Image-2",
       "source_types": [
@@ -71,80 +104,14 @@
         "GPT-Image-2"
       ],
       "merged_note_ids": [
-        "69edca56000000003601f40b"
+        "69ee38b0000000001f006d1f"
       ],
-      "llm_score": 68,
-      "llm_topic": "GPT Image 2 新功能 - PSD分层文件生成",
-      "llm_reason": "时效首发的AI设计工具新功能，具有明确的产品演示价值和设计师受众，情绪钩子强（震撼感），但受众相对垂直，信号组合中等。",
+      "llm_score": 58,
+      "llm_topic": "GPT-Image-2 新产品发布、AI生图工具、科研应用",
+      "llm_reason": "单产品新发布+时效首发+科技叙事人设匹配，垂直受众（科研er）但有明确产品演示价值，情绪钩子为未来感/实用性，综合评分达到推荐线。",
       "llm_category": "单产品/技术叙事",
-      "first_seen_at": "2026-04-26 23:56:41",
+      "first_seen_at": "2026-04-27 08:46:05",
       "last_checked_at": ""
-    },
-    {
-      "note_id": "69ede5d2000000001f004065",
-      "title": "0基础12分钟入门Claude Code",
-      "content": "#00:00  z适合普通人的AI工具CC！ #01:13  Claude Code安装 #03:08  很重要的tip",
-      "author": "紫玉的夏日漫游指南",
-      "author_id": "5eb3e2810000000001007915",
-      "cover_image": "https://sns-na-i2.xhscdn.com/1040g2sg31vdvfele2ie05nljsa0g8u8l71ldl6g?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=cb93e5bbc648dcc0e43aaedc6e647c53&t=69eea51f&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ede5d2000000001f004065?xsec_token=YBWr4NhNnFQOI4GllhJ2sqBImKpbE4uShzhUYWFWQVGK4=&xsec_source=pc_search",
-      "note_type": "video",
-      "topics": [],
-      "published_at": "2026-04-26T18:15:46",
-      "likes": 1625,
-      "collects": 2994,
-      "comments": 20,
-      "shares": 306,
-      "source_type": "keyword",
-      "source_value": "小红书科技AMA",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "小红书科技AMA"
-      ],
-      "merged_note_ids": [
-        "69ede5d2000000001f004065"
-      ],
-      "llm_score": 52,
-      "llm_topic": "Claude Code 入门教程",
-      "llm_reason": "Claude Code 新功能教程，具有时效性和海外搬运属性，标题含'入门'满足初学者需求，互动数据良好（收藏/点赞比1.84），但教程类天花板较低，需依赖执行质量补分。",
-      "llm_category": "教程/操作指南",
-      "first_seen_at": "2026-04-26 13:21:43",
-      "last_checked_at": "2026-04-26 23:56:15"
-    },
-    {
-      "note_id": "69ee1d98000000002202af68",
-      "title": "如何用GPT Image2生成复杂图片放入PPT编辑",
-      "content": "用了一晚上终于摸清了gpt image2的套路。亲测简单的到复杂的论文流程图（内含函数模型架构子图）都可以实现 快来看手",
-      "author": "Amber✨",
-      "author_id": "55d97c16a75c9567c97e33d3",
-      "cover_image": "https://sns-na-i2.xhscdn.com/notes_pre_post/1040g3k031ve5n8o7jq60414fr6u1ccujfjg12ko?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=fec810063557bd1821b89f03346ccda9&t=69eea5c6&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ee1d98000000002202af68?xsec_token=YBsyzjs1-3IhX1M0EwgBsrmTCDKC-5t-Gb3Syj0RR7ElM=&xsec_source=pc_search",
-      "note_type": "normal",
-      "topics": [],
-      "published_at": "2026-04-26T22:13:44",
-      "likes": 1019,
-      "collects": 1774,
-      "comments": 27,
-      "shares": 314,
-      "source_type": "keyword",
-      "source_value": "大模型",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "大模型"
-      ],
-      "merged_note_ids": [
-        "69ee1d98000000002202af68"
-      ],
-      "llm_score": 52,
-      "llm_topic": "GPT Image2图像生成工具",
-      "llm_reason": "AI设计工具小技巧演示，有'终于'情绪钩子和实用性，但信息差有限、执行依赖画面呈现，总分52分达到强推荐阈值。",
-      "llm_category": "AI/设计小技巧演示",
-      "first_seen_at": "2026-04-26 23:54:54",
-      "last_checked_at": "2026-04-26 23:56:49"
     }
   ]
 }
