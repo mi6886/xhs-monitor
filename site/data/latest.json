@@ -2,116 +2,83 @@
   "source": "xhs",
   "title": "小红书爆款笔记",
   "date": "2026-04-27",
-  "period": "afternoon",
-  "period_label": "Afternoon",
-  "generated_at": "2026-04-27T16:49:18.710235+08:00",
+  "period": "evening",
+  "period_label": "Evening",
+  "generated_at": "2026-04-27T22:19:03.153138+08:00",
   "delivery_status": "success",
-  "count": 3,
+  "count": 2,
   "stats": {
-    "total": 6302,
-    "candidate": 648,
-    "selected": 160,
-    "expired": 5494
+    "total": 6648,
+    "candidate": 989,
+    "selected": 162,
+    "expired": 5497
   },
   "notes": [
     {
-      "note_id": "69ee7f96000000003601ba6e",
-      "title": "ai直接把我公寓租出去了 把我家具也卖了",
-      "content": "#ai工具  #蒙特利尔租房  #hermesagent  #养龙虾  #蒙特利尔生活  #ai智能体  #ai自动化",
-      "author": "L（已有闺闺）",
-      "author_id": "61a2fa75000000001000bdad",
-      "cover_image": "https://sns-na-i4.xhscdn.com/1040g00831vej714n2q005od2v9qk1fdd0a6lk70?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=8216c6b2b3be7904dae01eb70e80045b&t=69ef212b&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ee7f96000000003601ba6e?xsec_token=YBIyNYaZqOdY8ZwmzD62lNRAiNaRRamCaIQ3sMoKCBr8w=&xsec_source=pc_search",
+      "note_id": "69ee5e3e000000002003a0a0",
+      "title": "能想到AI去测AIGC的，绝对是个人才",
+      "content": "#文献查找  #参考文献  #知网查重  #论文查重  #aigc率  #查重报告  #毕业生",
+      "author": "陈后主",
+      "author_id": "5d5bb1a900000000010099c9",
+      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g0k031vef6h963m105narm6kg96e9ghspb9o?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=9ad6173d154df38eb9015565f4ac55c6&t=69ef6f90&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ee5e3e000000002003a0a0?xsec_token=YBr9T7ZmT2R3tXPJNSPjiBlTxTurZlYEhw_1s3E06Jafk=&xsec_source=pc_search",
       "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-27T05:11:50",
-      "likes": 3100,
-      "collects": 2002,
-      "comments": 218,
-      "shares": 2101,
+      "published_at": "2026-04-27T09:50:02",
+      "likes": 8382,
+      "collects": 10539,
+      "comments": 49,
+      "shares": 558,
       "source_type": "keyword",
-      "source_value": "ai工具",
+      "source_value": "AIGC",
       "source_types": [
         "keyword"
       ],
       "source_values": [
-        "ai工具"
+        "AIGC"
       ],
       "merged_note_ids": [
-        "69ee7f96000000003601ba6e"
+        "69ee5e3e000000002003a0a0"
       ],
-      "llm_score": 58,
-      "llm_topic": "AI智能体自动化应用、反常识故事",
-      "llm_reason": "反常识+人物故事+AI智能体应用的组合，标题制造悬念和趣味感，命中监控关键词，互动数据良好（3.1k赞），但信息差一般、品类受众较窄，属于值得做的选题。",
-      "llm_category": "AI+行业应用",
-      "first_seen_at": "2026-04-27 08:41:29",
-      "last_checked_at": "2026-04-27 08:43:52"
+      "llm_score": 52,
+      "llm_topic": "AIGC检测、论文查重、AI应用",
+      "llm_reason": "选题具有反常识性（用AI检测AIGC的悖论感），命中高频垂直需求（毕业生查重），数据表现强劲（8.3k赞+10.5k收藏），但信息差和品类基础分偏低，整体处于推荐线边界。",
+      "llm_category": "反常识/意外性 + AI应用场景",
+      "first_seen_at": "2026-04-27 08:44:56",
+      "last_checked_at": "2026-04-27 14:15:47"
     },
     {
-      "note_id": "69ee1485000000000f03ac00",
-      "title": "AI时代的第一场阶级斗争已经打响：26岁中",
-      "content": "主角是Koki Xu。26岁。北京AI产品经理。2026年4月4日她花了一个小时写了一段代码发到GitHub。第二天这段",
-      "author": "项目二十四号",
-      "author_id": "62331928000000001000ff57",
-      "cover_image": "https://sns-na-i1.xhscdn.com/oss-sg/notes_pre_post/1040g3mo31ve642v87k005ohj34k41vqncbdvlho?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=688d46e4d2203d5e1257ab6512e00233&t=69ef218a&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ee1485000000000f03ac00?xsec_token=YBOMqiCxx-bFr0BMnAfnFLdn3ZdNGI2YiFoDW04Lx6iNU=&xsec_source=pc_search",
-      "note_type": "normal",
-      "topics": [],
-      "published_at": "2026-04-26T21:35:01",
-      "likes": 2814,
-      "collects": 1947,
-      "comments": 358,
-      "shares": 1511,
-      "source_type": "keyword",
-      "source_value": "agent",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "agent"
-      ],
-      "merged_note_ids": [
-        "69ee1485000000000f03ac00"
-      ],
-      "llm_score": 58,
-      "llm_topic": "AI产品经理、GitHub开源项目、AI Agent相关",
-      "llm_reason": "事件速报品类+时效首发（具体日期、GitHub发布）+人物故事（26岁产品经理主角）+反常识感（\"阶级斗争\"标题制造张力），但正文信息不完整导致信息差评分保守，整体达到强推荐线",
-      "llm_category": "事件速报",
-      "first_seen_at": "2026-04-27 08:42:53",
-      "last_checked_at": ""
-    },
-    {
-      "note_id": "69ee38b0000000001f006d1f",
-      "title": "搞定！image2输出PPT可编辑图，这下真无敌了",
-      "content": "各位科研er结合上期视频一起看，直观感受下GPT最新一代生图模型在科研领域的妙用吧。#gptimage2  #AI工具",
-      "author": "任意常数大于零",
-      "author_id": "640012ba00000000290117bf",
-      "cover_image": "https://sns-na-i1.xhscdn.com/1040g00831veaa0023q005p002ataa5tven2cpi0?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=5c6be9ad07ea63faef77d4165a535cc8&t=69ef223f&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ee38b0000000001f006d1f?xsec_token=YBOMqiCxx-bFr0BMnAfnFLdhZPQsc7ygVJ_B4XWv8OgBg=&xsec_source=pc_search",
+      "note_id": "69ee27980000000023016a16",
+      "title": "ChatGPT 可以直接生成可编辑PPT啦～",
+      "content": "#PPT  #办公  #AI  #AI聊天  #AI人工智能  #PPT模板  #ppt  #PPT制作",
+      "author": "香菇白菜小笼包",
+      "author_id": "604f440c000000000100acbc",
+      "cover_image": "https://sns-na-i6.xhscdn.com/1040g2sg31ve8h3r6iqe05o2f8g609b5s8b0h56g?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=cff5620a447eb9ce5ab7327357e19245&t=69ef6edf&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ee27980000000023016a16?xsec_token=YBGmM7WfyYTLIIcveQud3U4cz0ANQOw_IM78qCJsMfNGA=&xsec_source=pc_search",
       "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-27T11:30:33",
-      "likes": 1061,
-      "collects": 1677,
-      "comments": 18,
-      "shares": 297,
+      "published_at": "2026-04-26T22:56:24",
+      "likes": 1705,
+      "collects": 1752,
+      "comments": 86,
+      "shares": 540,
       "source_type": "keyword",
-      "source_value": "GPT-Image-2",
+      "source_value": "人工智能",
       "source_types": [
         "keyword"
       ],
       "source_values": [
-        "GPT-Image-2"
+        "人工智能"
       ],
       "merged_note_ids": [
-        "69ee38b0000000001f006d1f"
+        "69ee27980000000023016a16"
       ],
-      "llm_score": 58,
-      "llm_topic": "GPT-Image-2 新产品发布、AI生图工具、科研应用",
-      "llm_reason": "单产品新发布+时效首发+科技叙事人设匹配，垂直受众（科研er）但有明确产品演示价值，情绪钩子为未来感/实用性，综合评分达到推荐线。",
+      "llm_score": 52,
+      "llm_topic": "AI工具、ChatGPT、PPT生成",
+      "llm_reason": "ChatGPT新功能演示，具有单产品叙事特征；信息差为海外搬运级别；有'终于'隐含的期待情绪；受众广泛（办公人群）；执行质量需验证但选题结构达到推荐线。",
       "llm_category": "单产品/技术叙事",
-      "first_seen_at": "2026-04-27 08:46:05",
-      "last_checked_at": ""
+      "first_seen_at": "2026-04-26 23:52:50",
+      "last_checked_at": "2026-04-27 14:12:53"
     }
   ]
 }
