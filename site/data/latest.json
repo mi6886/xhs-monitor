@@ -1,34 +1,67 @@
 {
   "source": "xhs",
   "title": "小红书爆款笔记",
-  "date": "2026-04-26",
-  "period": "evening",
-  "period_label": "Evening",
-  "generated_at": "2026-04-26T21:32:18.472838+08:00",
+  "date": "2026-04-27",
+  "period": "morning",
+  "period_label": "Morning",
+  "generated_at": "2026-04-27T08:02:38.547408+08:00",
   "delivery_status": "success",
-  "count": 2,
+  "count": 4,
   "stats": {
-    "total": 5637,
-    "candidate": 914,
-    "selected": 153,
-    "expired": 4570
+    "total": 5972,
+    "candidate": 706,
+    "selected": 157,
+    "expired": 5109
   },
   "notes": [
     {
-      "note_id": "69ed79ee000000001f004c3a",
-      "title": "爆火的image2在科研领域到底能不能打？",
-      "content": "一下午实测了三个方向:绘制答辩用的PPT图片，技术路线图，还有投稿用的摘要插图。先说结论，不仅有两把刷子，而且刷子有毛",
-      "author": "任意常数大于零",
-      "author_id": "640012ba00000000290117bf",
-      "cover_image": "https://sns-na-i1.xhscdn.com/1040g2sg31vdj97u92g705p002ataa5tvoi5ceig?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=65a8d4a12cb16bcd5fb9fb35c22bd2cd&t=69ee125a&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ed79ee000000001f004c3a?xsec_token=YBKAEfvNI2YeeSbRhbLsZ997-1iHhAcrzzDe8i07dMh1o=&xsec_source=pc_search",
+      "note_id": "69edae30000000003502e33c",
+      "title": "🔥小众宝藏｜自定义高级地图海报！",
+      "content": "#网站推荐[话题]# #AI工具[话题]# #地图[话题]# #世界潮流地图[话题]# #设计干货[话题]# #vibecoding[话题]# #海报设计[话题]# #创意海报[话题]# #设计灵感[",
+      "author": "宅急颂AI",
+      "author_id": "",
+      "cover_image": "http://sns-na-i4.xhscdn.com/1040g2sg31vdpmmugjme05pmpeql7cf9rop2keg8?imageView2/2/w/576/format/webp/q/87|imageMogr2/strip&redImage/frame/0&ap=12&sc=USR_PRV&sign=fda2151030a4fe6a584dae562c3c13a9&t=69eea66f&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69edae30000000003502e33c",
       "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-26T10:35:26",
-      "likes": 7273,
-      "collects": 7274,
-      "comments": 148,
-      "shares": 1388,
+      "published_at": "2026-04-26T14:18:24",
+      "likes": 2691,
+      "collects": 5525,
+      "comments": 16,
+      "shares": 0,
+      "source_type": "account",
+      "source_value": "宅急颂AI",
+      "source_types": [
+        "account"
+      ],
+      "source_values": [
+        "宅急颂AI"
+      ],
+      "merged_note_ids": [
+        "69edae30000000003502e33c"
+      ],
+      "llm_score": 52,
+      "llm_topic": "AI工具推荐、地图海报设计、自定义工具",
+      "llm_reason": "资源合集类选题，具有设计干货属性和创意海报情绪钩子，收藏数高（5525）表明可触达感强，但信息差一般，总分52分达到强推荐阈值。",
+      "llm_category": "多工具/资源合集",
+      "first_seen_at": "2026-04-26 07:56:29",
+      "last_checked_at": "2026-04-26 23:57:38"
+    },
+    {
+      "note_id": "69edca56000000003601f40b",
+      "title": "🤯GPT Image2能做psd图层源文件了！附提示词",
+      "content": "GPT Image 2 能直接生成分层 PSD 文件了！！不用抠图改图，设计效率大幅提升！！ #gptimage2 #A",
+      "author": "北乔学长",
+      "author_id": "5e4e610d0000000001004b1c",
+      "cover_image": "https://sns-na-i4.xhscdn.com/1040g2sg31vdt06a02i005niec46g8iosdvacr8g?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=6c716a102a2ff17119f316e6710255be&t=69eea630&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69edca56000000003601f40b?xsec_token=YBsi-advU0WfbSdChPgriIiibwXxEvxPa1j8si6L_R6EY=&xsec_source=pc_search",
+      "note_type": "video",
+      "topics": [],
+      "published_at": "2026-04-26T16:18:30",
+      "likes": 2020,
+      "collects": 2236,
+      "comments": 179,
+      "shares": 504,
       "source_type": "keyword",
       "source_value": "GPT-Image-2",
       "source_types": [
@@ -38,30 +71,30 @@
         "GPT-Image-2"
       ],
       "merged_note_ids": [
-        "69ed79ee000000001f004c3a"
+        "69edca56000000003601f40b"
       ],
       "llm_score": 68,
-      "llm_topic": "GPT-Image-2 在科研领域的实测应用",
-      "llm_reason": "单产品新技术叙事+时效首发+具体应用场景演示（PPT、技术路线图、摘要插图）+反常识信号（'不仅有两把刷子，而且刷子有毛'的意外性表述），受众为科研工作者，情绪为好奇/实用，已获7273赞说明选题本身有市场，但正文信息量偏少，缺少具体数据对比或人物故事加成。",
+      "llm_topic": "GPT Image 2 新功能 - PSD分层文件生成",
+      "llm_reason": "时效首发的AI设计工具新功能，具有明确的产品演示价值和设计师受众，情绪钩子强（震撼感），但受众相对垂直，信号组合中等。",
       "llm_category": "单产品/技术叙事",
-      "first_seen_at": "2026-04-26 13:25:49",
+      "first_seen_at": "2026-04-26 23:56:41",
       "last_checked_at": ""
     },
     {
-      "note_id": "69ec6922000000003502a649",
-      "title": "学习工具分享📚给大家介绍我的AI“导师”们",
-      "content": "如果哪天我能顺利毕业… 那一定有这些AI工具的功劳！ 分享一些我觉得好用的AI 以及适合用它们来做什么任务 #学习分享",
-      "author": "小鱼同学UAU",
-      "author_id": "5a94e67de8ac2b2bed6a6729",
-      "cover_image": "https://sns-na-i2.xhscdn.com/1040g00831vchrvi33m004a2s1mj7qpp9o6ehk50?imageView2/2/w/608/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4/codec/65&ap=5&sc=SRH_PRV&sign=34cc1f43ea235b21ae23709cee39a0c9&t=69ee115a&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ec6922000000003502a649?xsec_token=YBdR-kTkh14qAA17tb2N7HCSCZXDHALASGytY-DMBCwbk=&xsec_source=pc_search",
+      "note_id": "69ede5d2000000001f004065",
+      "title": "0基础12分钟入门Claude Code",
+      "content": "#00:00  z适合普通人的AI工具CC！ #01:13  Claude Code安装 #03:08  很重要的tip",
+      "author": "紫玉的夏日漫游指南",
+      "author_id": "5eb3e2810000000001007915",
+      "cover_image": "https://sns-na-i2.xhscdn.com/1040g2sg31vdvfele2ie05nljsa0g8u8l71ldl6g?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=cb93e5bbc648dcc0e43aaedc6e647c53&t=69eea51f&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ede5d2000000001f004065?xsec_token=YBWr4NhNnFQOI4GllhJ2sqBImKpbE4uShzhUYWFWQVGK4=&xsec_source=pc_search",
       "note_type": "video",
       "topics": [],
-      "published_at": "2026-04-26T18:02:02",
-      "likes": 2608,
-      "collects": 1799,
-      "comments": 30,
-      "shares": 111,
+      "published_at": "2026-04-26T18:15:46",
+      "likes": 1625,
+      "collects": 2994,
+      "comments": 20,
+      "shares": 306,
       "source_type": "keyword",
       "source_value": "小红书科技AMA",
       "source_types": [
@@ -71,14 +104,47 @@
         "小红书科技AMA"
       ],
       "merged_note_ids": [
-        "69ec6922000000003502a649"
+        "69ede5d2000000001f004065"
       ],
       "llm_score": 52,
-      "llm_topic": "AI工具分享、学习效率",
-      "llm_reason": "多工具合集品类+学习场景情绪钩子+有可触达感，虽信息差一般但选题结构合理，达到推荐阈值",
-      "llm_category": "多工具/资源合集",
-      "first_seen_at": "2026-04-26 13:21:38",
-      "last_checked_at": "2026-04-26 13:22:35"
+      "llm_topic": "Claude Code 入门教程",
+      "llm_reason": "Claude Code 新功能教程，具有时效性和海外搬运属性，标题含'入门'满足初学者需求，互动数据良好（收藏/点赞比1.84），但教程类天花板较低，需依赖执行质量补分。",
+      "llm_category": "教程/操作指南",
+      "first_seen_at": "2026-04-26 13:21:43",
+      "last_checked_at": "2026-04-26 23:56:15"
+    },
+    {
+      "note_id": "69ee1d98000000002202af68",
+      "title": "如何用GPT Image2生成复杂图片放入PPT编辑",
+      "content": "用了一晚上终于摸清了gpt image2的套路。亲测简单的到复杂的论文流程图（内含函数模型架构子图）都可以实现 快来看手",
+      "author": "Amber✨",
+      "author_id": "55d97c16a75c9567c97e33d3",
+      "cover_image": "https://sns-na-i2.xhscdn.com/notes_pre_post/1040g3k031ve5n8o7jq60414fr6u1ccujfjg12ko?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=fec810063557bd1821b89f03346ccda9&t=69eea5c6&origin=0",
+      "url": "https://www.xiaohongshu.com/explore/69ee1d98000000002202af68?xsec_token=YBsyzjs1-3IhX1M0EwgBsrmTCDKC-5t-Gb3Syj0RR7ElM=&xsec_source=pc_search",
+      "note_type": "normal",
+      "topics": [],
+      "published_at": "2026-04-26T22:13:44",
+      "likes": 1019,
+      "collects": 1774,
+      "comments": 27,
+      "shares": 314,
+      "source_type": "keyword",
+      "source_value": "大模型",
+      "source_types": [
+        "keyword"
+      ],
+      "source_values": [
+        "大模型"
+      ],
+      "merged_note_ids": [
+        "69ee1d98000000002202af68"
+      ],
+      "llm_score": 52,
+      "llm_topic": "GPT Image2图像生成工具",
+      "llm_reason": "AI设计工具小技巧演示，有'终于'情绪钩子和实用性，但信息差有限、执行依赖画面呈现，总分52分达到强推荐阈值。",
+      "llm_category": "AI/设计小技巧演示",
+      "first_seen_at": "2026-04-26 23:54:54",
+      "last_checked_at": "2026-04-26 23:56:49"
     }
   ]
 }
