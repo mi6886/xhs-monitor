@@ -1,84 +1,17 @@
 {
   "source": "xhs",
   "title": "小红书爆款笔记",
-  "date": "2026-04-27",
-  "period": "evening",
-  "period_label": "Evening",
-  "generated_at": "2026-04-27T22:19:03.153138+08:00",
-  "delivery_status": "success",
-  "count": 2,
+  "date": "2026-04-28",
+  "period": "morning",
+  "period_label": "Morning",
+  "generated_at": "2026-04-28T08:00:27.720773+08:00",
+  "delivery_status": "empty",
+  "count": 0,
   "stats": {
     "total": 6648,
-    "candidate": 989,
+    "candidate": 666,
     "selected": 162,
-    "expired": 5497
+    "expired": 5820
   },
-  "notes": [
-    {
-      "note_id": "69ee5e3e000000002003a0a0",
-      "title": "能想到AI去测AIGC的，绝对是个人才",
-      "content": "#文献查找  #参考文献  #知网查重  #论文查重  #aigc率  #查重报告  #毕业生",
-      "author": "陈后主",
-      "author_id": "5d5bb1a900000000010099c9",
-      "cover_image": "https://sns-na-i4.xhscdn.com/spectrum/1040g0k031vef6h963m105narm6kg96e9ghspb9o?imageView2/2/w/608/format/heif/q/56|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=9ad6173d154df38eb9015565f4ac55c6&t=69ef6f90&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ee5e3e000000002003a0a0?xsec_token=YBr9T7ZmT2R3tXPJNSPjiBlTxTurZlYEhw_1s3E06Jafk=&xsec_source=pc_search",
-      "note_type": "video",
-      "topics": [],
-      "published_at": "2026-04-27T09:50:02",
-      "likes": 8382,
-      "collects": 10539,
-      "comments": 49,
-      "shares": 558,
-      "source_type": "keyword",
-      "source_value": "AIGC",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "AIGC"
-      ],
-      "merged_note_ids": [
-        "69ee5e3e000000002003a0a0"
-      ],
-      "llm_score": 52,
-      "llm_topic": "AIGC检测、论文查重、AI应用",
-      "llm_reason": "选题具有反常识性（用AI检测AIGC的悖论感），命中高频垂直需求（毕业生查重），数据表现强劲（8.3k赞+10.5k收藏），但信息差和品类基础分偏低，整体处于推荐线边界。",
-      "llm_category": "反常识/意外性 + AI应用场景",
-      "first_seen_at": "2026-04-27 08:44:56",
-      "last_checked_at": "2026-04-27 14:15:47"
-    },
-    {
-      "note_id": "69ee27980000000023016a16",
-      "title": "ChatGPT 可以直接生成可编辑PPT啦～",
-      "content": "#PPT  #办公  #AI  #AI聊天  #AI人工智能  #PPT模板  #ppt  #PPT制作",
-      "author": "香菇白菜小笼包",
-      "author_id": "604f440c000000000100acbc",
-      "cover_image": "https://sns-na-i6.xhscdn.com/1040g2sg31ve8h3r6iqe05o2f8g609b5s8b0h56g?imageView2/2/w/576/format/heif/q/58|imageMogr2/strip&redImage/frame/0/enhance/4&ap=5&sc=SRH_PRV&sign=cff5620a447eb9ce5ab7327357e19245&t=69ef6edf&origin=0",
-      "url": "https://www.xiaohongshu.com/explore/69ee27980000000023016a16?xsec_token=YBGmM7WfyYTLIIcveQud3U4cz0ANQOw_IM78qCJsMfNGA=&xsec_source=pc_search",
-      "note_type": "video",
-      "topics": [],
-      "published_at": "2026-04-26T22:56:24",
-      "likes": 1705,
-      "collects": 1752,
-      "comments": 86,
-      "shares": 540,
-      "source_type": "keyword",
-      "source_value": "人工智能",
-      "source_types": [
-        "keyword"
-      ],
-      "source_values": [
-        "人工智能"
-      ],
-      "merged_note_ids": [
-        "69ee27980000000023016a16"
-      ],
-      "llm_score": 52,
-      "llm_topic": "AI工具、ChatGPT、PPT生成",
-      "llm_reason": "ChatGPT新功能演示，具有单产品叙事特征；信息差为海外搬运级别；有'终于'隐含的期待情绪；受众广泛（办公人群）；执行质量需验证但选题结构达到推荐线。",
-      "llm_category": "单产品/技术叙事",
-      "first_seen_at": "2026-04-26 23:52:50",
-      "last_checked_at": "2026-04-27 14:12:53"
-    }
-  ]
+  "notes": []
 }
