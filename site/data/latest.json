@@ -2,16 +2,16 @@
   "source": "xhs",
   "title": "小红书爆款笔记",
   "date": "2026-04-28",
-  "period": "morning",
-  "period_label": "Morning",
-  "generated_at": "2026-04-28T08:00:27.720773+08:00",
+  "period": "afternoon",
+  "period_label": "Afternoon",
+  "generated_at": "2026-04-28T16:37:32.234064+08:00",
   "delivery_status": "empty",
   "count": 0,
   "stats": {
     "total": 6648,
-    "candidate": 666,
+    "candidate": 0,
     "selected": 162,
-    "expired": 5820
+    "expired": 6486
   },
   "notes": []
 }
